@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page>
+     <referenceContainer name="footer">
+         <block class="Llapgoch\Developertoolbar\Block\Panel\Block" name="llapgoch-developertoolbar-block">
+             
+         </block>
+     </referenceContainer>
+</page>
