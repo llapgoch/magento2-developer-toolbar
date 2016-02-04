@@ -22,10 +22,7 @@ class Block extends \Magento\Framework\View\Element\Template{
         $blocks = $this->_layout->getAllBlocks();
         $html = '';
         
-//        var_dump(count($blocks));
-        
         foreach($blocks as $block){
-            //var_dump($block->getNameInLayout());
             $html .= ' <strong>' . $block->getNameInLayout() . '</strong>';
         }
         
