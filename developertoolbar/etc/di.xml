@@ -2,4 +2,6 @@
     <type name="Magento\Framework\View\Element\AbstractBlock">
         <plugin name="llapgoch_developertoolbar_block_creation_marker" type="Llapgoch\Developertoolbar\Model\Block\Plugin" sortOrder="10" disabled="false" />
     </type>
+    
+    <preference for="Magento\Framework\View\Layout" type="Llapgoch\Developertoolbar\Model\View\Layout" />
 </config>
