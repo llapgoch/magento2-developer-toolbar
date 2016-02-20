@@ -3,29 +3,27 @@
 namespace Llapgoch\Developertoolbar\Block\Panel;
 
 
-class Block extends \Magento\Framework\View\Element\Template{
+class Block extends Base{
     /**
      * @var \Magento\Framework\View\Layout
      */
     protected $_layout;
     protected $_levelIncrement = 10;
-    protected $_itemBlock;
-    protected $_itemContainer;
     protected $_elementPool = array();
     
     
     public function __construct(
             \Magento\Framework\View\Element\Template\Context $context, 
             array $data = [],
-            \Magento\Framework\View\Layout $layout,
-            \Llapgoch\Developertoolbar\Block\Panel\Block\Item $itemBlock,
-            \Llapgoch\Developertoolbar\Block\Panel\Block\Container $itemContainer){
+            \Llapgoch\Developertoolbar\Block\Panel\Listing\Item $itemBlock,
+            \Llapgoch\Developertoolbar\Block\Panel\Listing\Container $itemContainer,
+            \Magento\Framework\View\Layout $layout){
             
         $this->_layout = $layout;
-        $this->_itemBlock = $itemBlock;
-        $this->_itemContainer = $itemContainer;
+        $this->_title = 'Blocks';
+        $this->_buttonTitle = 'Blocks';
             
-        parent::__construct($context, $data);
+        parent::__construct($context, $data, $itemBlock, $itemContainer);
     }
     
     public function getContent(){
@@ -97,11 +95,6 @@ class Block extends \Magento\Framework\View\Element\Template{
                 $this->buildElementStructure($elements, $childName, $structure[$name]['children']);
             }
         }
-    }
-    
-    public function getItemContent($item){
-        $this->_itemBlock->setItem($item);
-        return $this->_itemTemplate->toHtml();
     }
     
     protected function _buildEntries(&$entries, $block, $alias, $level){

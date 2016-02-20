@@ -1,8 +1,15 @@
 <?xml version="1.0"?>
 <page>
-     <referenceContainer name="footer">
-         <block class="Llapgoch\Developertoolbar\Block\Panel\Block" name="llapgoch-developertoolbar-block" template="toolbar/panel.phtml">
+    <head>
+        <css src="Llapgoch_Developertoolbar::css/developertoolbar.css"/>
+    </head>
+    
+    <body>
+         <container name="llapgoch.developertoolbar" htmlTag="div" htmlClass="developertoolbar">
+             <block class="Magento\Framework\View\Element\Template" name="llapgoch.developertoolbar.bg" template="Llapgoch_Developertoolbar::toolbar/background.phtml" />
+             <block class="Llapgoch\Developertoolbar\Block\Panel\Block" name="llapgoch-developertoolbar-block" template="toolbar/panel.phtml">
              
-         </block>
-     </referenceContainer>
+             </block>
+         </container>
+     </body>
 </page>
