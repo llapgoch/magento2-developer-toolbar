@@ -29,15 +29,21 @@
 
 .developertoolbar__panel{
     position: absolute;
-    max-height: 200px;
-    width: 200px;
-    background: red;
-    transform: translateY(0);
     z-index: 0;
-    transition: transform 0.25s;
     top: 0;
 }
 
-.developertoolbar__item--active .developertoolbar__item__container{
+.developertoolbar__panel-inner{
+    transform: translateY(0);
+    transition: transform 0.25s;
+    background: red;
+}
+
+.developertoolbar__item--active .developertoolbar__panel-inner{
     transform: translateY(-100%);
+}
+
+.developertoolbar__panel-body{
+    max-height: 300px;
+    overflow-y: scroll;
 }

@@ -1,19 +1,21 @@
-<div class="developertoolbar__item <?php echo $block->getContainerClass();?>">
+<div class="developertoolbar__item js-developertoolbar__item <?php echo $block->getContainerClass();?>">
     <div class="developertoolbar__button">
-        <a href="#" class="developertoolbar__button-link">
+        <a href="#" class="developertoolbar__button-link js-developertoolbar__button-link">
             <?php echo $block->getButtonTitle();?>
         </a>
     </div>
     
-    <div class="developertoolbar__panel">
-        <div class="developertoolbar__panel-head">
-            <h4 class="developertoolbar__panel-title">
-                <?php echo $block->getTitle();?>
-            </h4>
-        </div>
+    <div class="developertoolbar__panel js-developertoolbar__panel">
+        <div class="developertoolbar__panel-inner">
+            <div class="developertoolbar__panel-head">
+                <h4 class="developertoolbar__panel-title">
+                    <?php echo $block->getTitle();?>
+                </h4>
+            </div>
     
-        <div class="developertoolbar__panel-body">
-            <?php echo $block->getContent(); ?>
+            <div class="developertoolbar__panel-body">
+                <?php echo $block->getContent(); ?>
+            </div>
         </div>
     </div>
 </div>
