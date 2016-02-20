@@ -28,18 +28,16 @@
 }
 
 .developertoolbar__panel{
+    transform: translateY(0);
+    transition: transform 0.25s;
+    max-width: 90vw;
+    background: red;
     position: absolute;
     z-index: 0;
     top: 0;
 }
 
-.developertoolbar__panel-inner{
-    transform: translateY(0);
-    transition: transform 0.25s;
-    background: red;
-}
-
-.developertoolbar__item--active .developertoolbar__panel-inner{
+.developertoolbar__item--active .developertoolbar__panel{
     transform: translateY(-100%);
 }
 
