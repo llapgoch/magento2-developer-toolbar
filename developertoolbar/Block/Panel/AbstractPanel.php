@@ -2,7 +2,7 @@
 
 namespace Llapgoch\Developertoolbar\Block\Panel;
 
-abstract class Base extends \Magento\Framework\View\Element\Template{
+abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
     protected $_itemBlock;
     protected $_itemContainer;
     protected $_title = 'Panel Title';
@@ -18,6 +18,15 @@ abstract class Base extends \Magento\Framework\View\Element\Template{
         $this->_itemContainer = $itemContainer;
             
         parent::__construct($context, $data);
+    }
+    
+    protected function _prepareLayout(){
+        parent::_prepareLayout();
+        $name = $this->getNameInLayout();
+
+        // Add the blocks as children of this, so that the commenting exclusions take effect
+        $this->_layout->addBlock($this->_itemBlock, $name . 'list.item', $name);
+        $this->_layout->addBlock($this->_itemContainer, $name . 'list.container', $name);
     }
     
     abstract public function getContent();

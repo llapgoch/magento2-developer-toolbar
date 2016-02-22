@@ -3,7 +3,7 @@
 namespace Llapgoch\Developertoolbar\Block\Panel;
 
 
-class Block extends Base{
+class Block extends AbstractPanel{
     /**
      * @var \Magento\Framework\View\Layout
      */
@@ -28,7 +28,7 @@ class Block extends Base{
     
     public function getContent(){
         $blocks = $this->_layout->getAllBlocks();
-        $html = '';
+        $html = ''; 
         
         $elements = $this->_layout->getStructure()->exportElements();
        
