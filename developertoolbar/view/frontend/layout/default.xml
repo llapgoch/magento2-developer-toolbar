@@ -4,12 +4,14 @@
         <css src="Llapgoch_Developertoolbar::css/developertoolbar.css"/>
     </head>
     
-    <body>
+
+    <referenceContainer name="before.body.end">
          <container name="llapgoch.developertoolbar" htmlTag="div" htmlClass="developertoolbar">
              <block class="Magento\Framework\View\Element\Template" name="llapgoch.developertoolbar.bg" template="Llapgoch_Developertoolbar::toolbar/background.phtml" />
-             <block class="Llapgoch\Developertoolbar\Block\Panel\Block" name="llapgoch-developertoolbar-block" template="toolbar/panel.phtml">
-             
+             <block class="Llapgoch\Developertoolbar\Block\Panel\Block" name="llapgoch-developertoolbar-block" template="Llapgoch_Developertoolbar::toolbar/panel.phtml">
+         
              </block>
          </container>
-     </body>
+     </referenceContainer>
+
 </page>
