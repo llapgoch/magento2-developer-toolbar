@@ -1,34 +1,32 @@
 <?php
 namespace Llapgoch\Developertoolbar\Block\Panel\Listing;
 
+use \Llapgoch\Developertoolbar\Model\Attribute\Container as AttributeContainer;
+use \Magento\Framework\View\Element\Template\Context;
+
 class Item extends \Magento\Framework\View\Element\Template
 {
-    protected $_attributes = array();
+    protected $_attributeContainer;
     
-    public function _construct()
-    {
+    public function __construct(
+            \Magento\Framework\View\Element\Template\Context $context,
+            
+            AttributeContainer $container,
+            array $data = []
+    ) {
+        parent::__construct($context, $data);
         $this->setTemplate('toolbar/block/list/item.phtml');
+        $this->_attributeContainer = $container;
     }
     
     public function getOutputAttributes()
     {
-        $attrs = '';
-        
-        foreach($this->_attributes as $k => $v){
-            $attrs = $k . "='$v'";
-        }
-        
-        return $attrs;
+        return $this->_attributeContainer->getOutputAttributes();
     }
     
-    public function getAttributes()
+    public function getAttributeContainer()
     {
-        return $this->attributes;   
+        return $this->_attributeContainer;
     }
-    
-    public function addAttribute($name, $value){
-        $this->_attributes[$name] = $value;
-        return $this;
-    }
-    
+        
 }

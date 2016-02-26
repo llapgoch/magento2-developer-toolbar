@@ -49,7 +49,8 @@ class Layout extends \Magento\Framework\View\Layout{
     }
     
     // If only this was public to begin with!
-    public function getStructure(){
+    public function getStructure()
+    {
         return $this->structure;
     }
     

@@ -14,11 +14,12 @@ class Block extends AbstractPanel{
     
     public function __construct(
             \Magento\Framework\View\Element\Template\Context $context, 
-            array $data = [],
             \Llapgoch\Developertoolbar\Helper\Data $helper,
             \Llapgoch\Developertoolbar\Block\Panel\Listing\Item $itemBlock,
             \Llapgoch\Developertoolbar\Block\Panel\Listing\Container $itemContainer,
-            \Magento\Framework\View\Layout $layout){
+            \Magento\Framework\View\Layout $layout,
+            array $data = []
+        ){
             
         $this->_layout = $layout;
         $this->_title = 'Blocks';
@@ -29,7 +30,8 @@ class Block extends AbstractPanel{
         parent::__construct($context, $data, $itemBlock, $itemContainer);
     }
     
-    public function getContent(){
+    public function getContent()
+    {
         $blocks = $this->_layout->getAllBlocks();
         $html = '';
         
@@ -43,7 +45,8 @@ class Block extends AbstractPanel{
         return $html;
     }
     
-    public function buildHtmlStructure($els, $level){
+    public function buildHtmlStructure($els, $level)
+    {
         $html = '';
         
         if(!count($els)){
@@ -56,19 +59,23 @@ class Block extends AbstractPanel{
                 $childrenHtml = $this->buildHtmlStructure($el['children'], $level + $this->_levelIncrement);
             }
             
+            $this->_itemBlock->getAttributeContainer()
+                ->reset()
+                ->addAttribute('data-layout-name', $this->_helper->makeLayoutNameIntoClass($name));
+            
             $html .= $this->_itemBlock->setItem($el)->setName($name)
                 ->setChildrenHtml($childrenHtml)
-                ->addAttribute('data-layout-name', $this->_helper->makeLayoutNameIntoClass($name))
                 ->toHtml();
         }
         
         return $this->_itemContainer
-                ->setContents($html)
-                ->setLevel($level)
-                ->toHtml();
+            ->setContents($html)
+            ->setLevel($level)
+            ->toHtml();
     }
     
-    public function buildCompleteElementStructure($elements){
+    public function buildCompleteElementStructure($elements)
+    {
         $structure = array();
         
         foreach($elements as $k => $element){
@@ -82,7 +89,8 @@ class Block extends AbstractPanel{
         return $structure;
     }
     
-    public function buildElementStructure($elements, $name, &$structure = null){
+    public function buildElementStructure($elements, $name, &$structure = null)
+    {
         if(!isset($elements[$name])){
             return;
         }
@@ -101,7 +109,8 @@ class Block extends AbstractPanel{
         }
     }
     
-    protected function _buildEntries(&$entries, $block, $alias, $level){
+    protected function _buildEntries(&$entries, $block, $alias, $level)
+    {
         $blocks = $this->_layout->getAllBlocks();
         $extras = array();
         $extras[] = count($block->getChild()) ? count($block->getChild()) : "-";

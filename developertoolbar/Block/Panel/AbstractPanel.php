@@ -22,7 +22,8 @@ abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
         parent::__construct($context, $data);
     }
     
-    protected function _prepareLayout(){
+    protected function _prepareLayout()
+    {
         parent::_prepareLayout();
         $name = $this->getNameInLayout();
 
@@ -33,27 +34,33 @@ abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
     
     abstract public function getContent();
     
-    public function getTitle(){
+    public function getTitle()
+    {
         return __($this->_title);
     }
     
-    public function getCssClass(){
+    public function getCssClass()
+    {
         return $this->_cssClassPrefix . $this->_cssClassSuffix;
     }
     
-    public function setTitle($title){
+    public function setTitle($title)
+    {
         $this->_title = $title;
     }
     
-    public function getButtonTitle(){
+    public function getButtonTitle()
+    {
         return __($this->_buttonTitle);
     }
     
-    public function setButtonTitle($title){
+    public function setButtonTitle($title)
+    {
         $this->_buttonTitle = $title;
     }
     
-    public function getItemContent($item){
+    public function getItemContent($item)
+    {
         $this->_itemBlock->setItem($item);
         return $this->_itemTemplate->toHtml();
     }
