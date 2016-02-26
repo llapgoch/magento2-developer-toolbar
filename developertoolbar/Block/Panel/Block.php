@@ -8,27 +8,30 @@ class Block extends AbstractPanel{
      * @var \Magento\Framework\View\Layout
      */
     protected $_layout;
+    protected $_helper;
     protected $_levelIncrement = 10;
     protected $_elementPool = array();
-    
     
     public function __construct(
             \Magento\Framework\View\Element\Template\Context $context, 
             array $data = [],
+            \Llapgoch\Developertoolbar\Helper\Data $helper,
             \Llapgoch\Developertoolbar\Block\Panel\Listing\Item $itemBlock,
             \Llapgoch\Developertoolbar\Block\Panel\Listing\Container $itemContainer,
             \Magento\Framework\View\Layout $layout){
             
         $this->_layout = $layout;
         $this->_title = 'Blocks';
+        $this->_helper = $helper;
         $this->_buttonTitle = 'Blocks';
+        $this->_cssClassSuffix = 'block';
             
         parent::__construct($context, $data, $itemBlock, $itemContainer);
     }
     
     public function getContent(){
         $blocks = $this->_layout->getAllBlocks();
-        $html = ''; 
+        $html = '';
         
         $elements = $this->_layout->getStructure()->exportElements();
        
@@ -55,6 +58,7 @@ class Block extends AbstractPanel{
             
             $html .= $this->_itemBlock->setItem($el)->setName($name)
                 ->setChildrenHtml($childrenHtml)
+                ->addAttribute('data-layout-name', $this->_helper->makeLayoutNameIntoClass($name))
                 ->toHtml();
         }
         

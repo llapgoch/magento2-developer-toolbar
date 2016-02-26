@@ -7,6 +7,8 @@ abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
     protected $_itemContainer;
     protected $_title = 'Panel Title';
     protected $_buttonTitle = 'Toolbar Button';
+    protected $_cssClassPrefix = 'developertoolbar-panel-';
+    protected $_cssClassSuffix = 'default';
     
     public function __construct(
             \Magento\Framework\View\Element\Template\Context $context, 
@@ -33,6 +35,10 @@ abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
     
     public function getTitle(){
         return __($this->_title);
+    }
+    
+    public function getCssClass(){
+        return $this->_cssClassPrefix . $this->_cssClassSuffix;
     }
     
     public function setTitle($title){

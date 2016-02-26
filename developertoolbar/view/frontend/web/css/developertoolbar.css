@@ -2,7 +2,7 @@
     width: 100%;
     position: fixed;
     bottom: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .developertoolbar__bg{
@@ -27,6 +27,11 @@
     color: white;
 }
 
+.developertoolbar__button-link.is-active,
+.developertoolbar__button a.is-active:visited{
+    color: #f4e829;
+}
+
 .developertoolbar__panel{
     transform: translateY(0);
     transition: transform 0.25s;
@@ -44,4 +49,13 @@
 .developertoolbar__panel-body{
     max-height: 300px;
     overflow-y: scroll;
+}
+
+.developertoolbar__overlay{
+    position: absolute;
+    background-color: #7d29d2;
+    z-index: 900;
+    opacity: 0.5;
+    transition: all 500ms ease-in-out;
+    -webkit-transition: all 500ms ease-in-out;
 }

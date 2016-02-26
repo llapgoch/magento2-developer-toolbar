@@ -8,15 +8,18 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
     const HEAD_COMPONENTS_NAME = "head.components";
     const DEVELOPER_TOOLBAR_NAME = "llapgoch.developertoolbar";
     
-    protected $_layout;
     protected $_dataStructure;
     
     public function __construct(
-        \Magento\Framework\App\Helper\Context $context,
-        \Magento\Framework\View\Layout $layout){
+        \Magento\Framework\App\Helper\Context $context){
             parent::__construct($context);
-            $this->_layout = $layout;
-            $this->_dataStructure = $layout->getStructure();
+    }
+    
+    // We have to do this rather than the helper knowing 
+    // about the layout because this creates a circular reference
+    public function setDataStructure(
+        \Magento\Framework\View\Layout\Data\Structure $structure){
+            $this->_dataStructure = $structure;
     }
     
     public function makeLayoutNameIntoClass($name){
@@ -24,11 +27,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
     }
     
     public function makeStartMarker($blockName){
-        return $this->_helper->makeLayoutNameIntoClass($blockName) . self::START_MARKER_SUFFIX . " " . self::GLOBAL_MARKER;
+        return $this->makeLayoutNameIntoClass($blockName) . self::START_MARKER_SUFFIX . " " . self::GLOBAL_MARKER;
     }
     
     public function makeEndMarker($blockName){
-        return $this->_helper->makeLayoutNameIntoClass($blockName) . self::END_MARKER_SUFFIX . " " . self::GLOBAL_MARKER;
+        return $this->makeLayoutNameIntoClass($blockName) . self::END_MARKER_SUFFIX . " " . self::GLOBAL_MARKER;
     }
     
     public function getForbiddenNames(){
@@ -40,7 +43,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
             return $content;
         }
         
-        return "<!--" . $this->_helper->makeStartMarker($layoutName) . "-->" . $content . "<!--" . $this->_helper->makeEndMarker($layoutName) . "-->";
+        return "<!--" . $this->makeStartMarker($layoutName) . "-->" . $content . "<!--" . $this->makeEndMarker($layoutName) . "-->";
     }
     
     protected function _isForbidden($layoutName, $forbidden = array()){     

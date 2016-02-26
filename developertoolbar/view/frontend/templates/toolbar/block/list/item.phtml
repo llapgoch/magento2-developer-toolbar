@@ -1,7 +1,7 @@
 <?php $_item = $block->getItem();?>
 
 <li>
-    <a href="#">
+    <a href="#" <?php echo $block->getOutputAttributes();?>>
         <span><?php echo $block->getName(); ?></span>
         <?php echo $block->getChildrenHtml(); ?>
     </a>

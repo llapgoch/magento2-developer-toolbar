@@ -6,8 +6,7 @@ use Magento\Framework\Message\ManagerInterface as MessageManagerInterface;
 use Magento\Framework\Cache\FrontendInterface;
 use Magento\Framework\App\State as AppState;
 use Psr\Log\LoggerInterface as Logger;
-use Magento\Framework\View\Layout\
-    Element;
+use Magento\Framework\View\Layout\Element;
 
 class Layout extends \Magento\Framework\View\Layout{
     protected $_helper;
@@ -25,9 +24,10 @@ class Layout extends \Magento\Framework\View\Layout{
         \Magento\Framework\View\Layout\Generator\ContextFactory $generatorContextFactory,
         AppState $appState,
         Logger $logger,
-        $cacheable = true,
-        \Llapgoch\Developertoolbar\Helper\Data $helper){
-        
+        \Magento\Framework\ObjectManagerInterface $objectManager,
+        \Llapgoch\Developertoolbar\Helper\Data $helper
+        ){
+
         parent::__construct(
             $processorFactory,
             $eventManager,
@@ -40,11 +40,12 @@ class Layout extends \Magento\Framework\View\Layout{
             $readerContextFactory,
             $generatorContextFactory,
             $appState,
-            $logger,
-            $cacheable
+            $logger
         );
+       
         
          $this->_helper = $helper;
+         $this->_helper->setDataStructure($structure);
     }
     
     // If only this was public to begin with!
@@ -76,7 +77,7 @@ class Layout extends \Magento\Framework\View\Layout{
         $htmlTag = $this->structure->getAttribute($name, Element::CONTAINER_OPT_HTML_TAG);
         
         // This is the change we need to make for the developer toolbar - if only we could use a plugin for this!!
-        
+        $html = $this->_helper->wrapContent($name, $html);
 
         $html = sprintf('<%1$s%2$s%3$s>%4$s</%1$s>', $htmlTag, $htmlId, $htmlClass, $html);
 
