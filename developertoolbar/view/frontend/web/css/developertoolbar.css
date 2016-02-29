@@ -8,6 +8,7 @@
 .developertoolbar,
 .developertoolbar * {
     font-family: Tahoma;
+    box-sizing: border-box;
 }
 .developertoolbar {
     color: #333;
@@ -21,7 +22,11 @@
 }
 
 .developertoolbar a {
+    text-decoration: none;
     color: steelblue;
+}
+.developertoolbar__panel a:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 26em) {
@@ -166,16 +171,21 @@
     height: 0;
     display: inline-block;
     vertical-align: middle;
-    border-right: 3px solid transparent;
-    border-left: 3px solid transparent;
-    border-bottom: none;
-    border-top: 4px solid #333;
+    
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-left: 4px solid #333;
+    border-right: none;
+
     margin-right: 0.3em;
+    margin-left: -2px;
 }
 
 .developertoolbar__toggle.is-active::before {
-    border-bottom: 4px solid #333;
-    border-top: none;
+    border-right: 3px solid transparent;
+    border-left: 3px solid transparent;
+    border-top: 4px solid #333;
+    border-bottom: none;
 }
 
 
