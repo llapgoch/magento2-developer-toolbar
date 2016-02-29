@@ -181,7 +181,7 @@
             $endBlock = markerBlocks.endBlock;
         
             performScroll = performScroll === false ? false : true;
-            console.log(blockName);
+
             if(!$startBlock || !$endBlock || !dims){
                 hideBlockOverlay();
                 return false;

@@ -182,6 +182,11 @@
 .developertoolbar__highlight-toggle {
     float: right;
     font-size: 80%;
+    display: none;
+}
+
+.developertoolbar__highlight-toggle.enabled {
+    display: block;
 }
 
 /*
