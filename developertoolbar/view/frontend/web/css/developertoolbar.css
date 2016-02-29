@@ -199,6 +199,10 @@
     display: block;
 }
 
+.developertoolbar__highlight-toggle.is-active{
+    color: #000000;
+}
+
 /*
 // =============================================
 // Colour Code
@@ -221,11 +225,16 @@
 .developertoolbar__ul {
     overflow: hidden;
     position: relative;
-    height: 0;
+    max-height: 0;
+/*    transform: scaleY(0);*/
     padding-left: 1em !important;
+    transition: all 500ms ease-in-out;
+    -webkit-transition: all 500ms ease-in-out;
 }
 
 .developertoolbar__ul.is-active, 
 .developertoolbar__ul.level_0 {
     height: auto;
+    max-height: 300px;
+/*    transform: scaleY(1);*/
 }
