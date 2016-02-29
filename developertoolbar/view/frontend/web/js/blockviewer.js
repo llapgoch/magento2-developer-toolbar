@@ -259,7 +259,7 @@
                 return;
             }
         
-            $(blockContainer + ' a').removeClass('is-active');
+            $(blockContainer + ' .js-developertoolbar__highlight-toggle').removeClass('is-active');
         
             if(!showOverlayForBlock(blockName)){
                 alert('The block\'s dimensions could not be determined');

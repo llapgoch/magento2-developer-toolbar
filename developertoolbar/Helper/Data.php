@@ -11,6 +11,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
     protected $_dataStructure;
     protected $_layout;
     
+    // Use a proxy to sort out the circular reference
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
         \Llapgoch\Developertoolbar\Model\View\Layout\Proxy $layout)
@@ -18,16 +19,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
         $this->_dataStructure = $layout->getStructure();
         parent::__construct($context);
     }
-    
-    // We have to do this rather than the helper knowing 
-    // about the layout because this creates a circular reference
-    // public function setDataStructure(
-    //     \Magento\Framework\View\Layout\Data\Structure $structure)
-    // {
-    //     if(!$this->_dataStructure){
-    //         $this->_dataStructure = $structure;
-    //     }
-    // }
     
     public function makeLayoutNameIntoClass($name)
     {

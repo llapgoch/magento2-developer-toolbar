@@ -20,13 +20,17 @@
         $('.js-developertoolbar__toggle').on('click', function(ev){
             ev.preventDefault();
             
+            var $this = $(this);
+            
             // find the associated item
             var $item = $(this).closest('.developertoolbar__list-item').find('.developertoolbar__ul').first();
             
             if($item.hasClass('is-active')){
                 $item.removeClass('is-active');
+                $this.removeClass('is-active');
             }else{
                 $item.addClass('is-active');
+                $this.addClass('is-active');
             }
         });
     });
