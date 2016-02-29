@@ -172,6 +172,11 @@
     border-top: 6px solid red;
 }
 
+.developertoolbar__toggle.is-active::before {
+    border-bottom: 6px solid red;
+    border-top: none;
+}
+
 
 /*
 // =============================================
