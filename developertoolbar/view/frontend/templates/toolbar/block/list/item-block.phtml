@@ -1,13 +1,7 @@
 <?php $_item = $block->getItem();?>
 
 <li class="developertoolbar__list-item">    
-    <a href="#" class="developertoolbar__toggle js-developertoolbar__toggle">
-        <span><?php echo $block->getName(); ?></span>
-    </a>
-    
-    <a href="#" <?php echo $block->getOutputAttributes();?> class="developertoolbar__highlight-toggle js-developertoolbar__highlight-toggle">
-       <?php echo __('Highlight') ?> 
-    </a>    
-    
+    <a href="#" class="developertoolbar__toggle js-developertoolbar__toggle"><span><?php echo $block->getName(); ?></span></a>
+    <a href="#" <?php echo $block->getOutputAttributes();?> class="developertoolbar__highlight-toggle js-developertoolbar__highlight-toggle"><?php echo __('Highlight') ?></a>    
     <?php echo $block->getChildrenHtml(); ?>
 </li>
