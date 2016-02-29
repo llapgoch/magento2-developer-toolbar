@@ -65,6 +65,8 @@ class Block extends AbstractPanel{
             
             $html .= $this->_itemBlock->setItem($el)->setName($name)
                 ->setChildrenHtml($childrenHtml)
+                ->setIsCollapsible(true)
+                ->setCollapseText('')
                 ->toHtml();
         }
         

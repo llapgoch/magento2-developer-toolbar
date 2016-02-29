@@ -15,7 +15,17 @@
             if(!active){  
                 $item.addClass('developertoolbar__item--active');
             }
-
+        });
+        
+        $('.js-developertoolbar__toggle').on('click', function(){
+            // find the associated item
+            var $item = $(this).closest('.developertoolbar__list-item').find('.developertoolbar__ul').first();
+            
+            if($item.hasClass('is-active')){
+                $item.removeClass('is-active');
+            }else{
+                $item.addClass('is-active');
+            }
         });
     });
 }(jQuery));

@@ -160,7 +160,6 @@
     -webkit-transition: all 500ms ease-in-out;
 }
 
-
 .developertoolbar__toggle::before {
     content: '';
     width: 0;
@@ -190,4 +189,15 @@
 /* JS */
 .developertoolbar-panel-js .developertoolbar__button-link {
     background-color: #F7D74D;
+}
+
+.developertoolbar__ul {
+    overflow: hidden;
+    position: relative;
+    height: 0;
+}
+
+.developertoolbar__ul.is-active, 
+.developertoolbar__ul.level_0 {
+    height: auto;
 }
