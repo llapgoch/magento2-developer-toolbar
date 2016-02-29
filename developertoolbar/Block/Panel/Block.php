@@ -21,13 +21,15 @@ class Block extends AbstractPanel{
             array $data = []
         ){
             
+        parent::__construct($context, $data, $itemBlock, $itemContainer);
+        
+        $itemBlock->setTemplate('toolbar/block/list/item-block.phtml');
         $this->_layout = $layout;
         $this->_title = 'Blocks';
         $this->_helper = $helper;
         $this->_buttonTitle = 'Blocks';
         $this->_cssClassSuffix = 'block';
             
-        parent::__construct($context, $data, $itemBlock, $itemContainer);
     }
     
     public function getContent()

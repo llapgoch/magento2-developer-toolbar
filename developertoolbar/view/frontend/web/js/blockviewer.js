@@ -228,10 +228,9 @@
         }
     
         // Apply enabled classes to clickable blocks
-        $(blockContainer + ' a').each(function(){
+        $(blockContainer + ' .js-developertoolbar__highlight-toggle').each(function(){
             var $this = $(this),
                 blockName = $this.data('layout-name');
-                console.log(blockName);
             if(!blockName){
                 return;
             }
@@ -243,7 +242,7 @@
         });
     
         
-        $(blockContainer + ' a').click(function(e){
+        $(blockContainer + ' .js-developertoolbar__highlight-toggle').click(function(e){
             var $this = $(this),
                 blockName = $this.data('layout-name');
         
