@@ -9,36 +9,48 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
     const DEVELOPER_TOOLBAR_NAME = "llapgoch.developertoolbar";
     
     protected $_dataStructure;
+    protected $_layout;
     
     public function __construct(
-        \Magento\Framework\App\Helper\Context $context){
-            parent::__construct($context);
+        \Magento\Framework\App\Helper\Context $context,
+        \Llapgoch\Developertoolbar\Model\View\Layout\Proxy $layout)
+    {
+        $this->_dataStructure = $layout->getStructure();
+        parent::__construct($context);
     }
     
     // We have to do this rather than the helper knowing 
     // about the layout because this creates a circular reference
-    public function setDataStructure(
-        \Magento\Framework\View\Layout\Data\Structure $structure){
-            $this->_dataStructure = $structure;
-    }
+    // public function setDataStructure(
+    //     \Magento\Framework\View\Layout\Data\Structure $structure)
+    // {
+    //     if(!$this->_dataStructure){
+    //         $this->_dataStructure = $structure;
+    //     }
+    // }
     
-    public function makeLayoutNameIntoClass($name){
+    public function makeLayoutNameIntoClass($name)
+    {
         return str_replace('.', '-', $name);
     }
     
-    public function makeStartMarker($blockName){
+    public function makeStartMarker($blockName)
+    {
         return $this->makeLayoutNameIntoClass($blockName) . self::START_MARKER_SUFFIX . " " . self::GLOBAL_MARKER;
     }
     
-    public function makeEndMarker($blockName){
+    public function makeEndMarker($blockName)
+    {
         return $this->makeLayoutNameIntoClass($blockName) . self::END_MARKER_SUFFIX . " " . self::GLOBAL_MARKER;
     }
     
-    public function getForbiddenNames(){
+    public function getForbiddenNames()
+    {
         return array(self::DEVELOPER_TOOLBAR_NAME, self::HEAD_COMPONENTS_NAME);
     }
     
-    public function wrapContent($layoutName, $content){
+    public function wrapContent($layoutName, $content)
+    {
         if($this->_isForbidden($layoutName, $this->getForbiddenNames())){
             return $content;
         }
@@ -46,7 +58,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
         return "<!--" . $this->makeStartMarker($layoutName) . "-->" . $content . "<!--" . $this->makeEndMarker($layoutName) . "-->";
     }
     
-    protected function _isForbidden($layoutName, $forbidden = array()){     
+    protected function _isForbidden($layoutName, $forbidden = array())
+    {
         if(in_array($layoutName, $forbidden)){
             return true;
         }
@@ -61,7 +74,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
         return $this->_isParentOf($layoutName, $forbidden);
     }
     
-    protected function _isParentOf($layoutName, $potentialParents = array()){
+    protected function _isParentOf($layoutName, $potentialParents = array())
+    {
         if(!$layoutName){
             return false;
         }
@@ -69,7 +83,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
         if(in_array($layoutName, $potentialParents)){
             return true;
         }
-        
+
         return $this->_isParentOf($this->_dataStructure->getParentId($layoutName), $potentialParents);
     }
 }

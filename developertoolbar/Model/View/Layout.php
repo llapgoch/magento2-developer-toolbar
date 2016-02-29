@@ -25,7 +25,7 @@ class Layout extends \Magento\Framework\View\Layout{
         AppState $appState,
         Logger $logger,
         \Magento\Framework\ObjectManagerInterface $objectManager,
-        \Llapgoch\Developertoolbar\Helper\Data $helper
+        \Llapgoch\Developertoolbar\Helper\Data\Proxy $helper
         ){
 
         parent::__construct(
@@ -43,9 +43,7 @@ class Layout extends \Magento\Framework\View\Layout{
             $logger
         );
        
-        
          $this->_helper = $helper;
-         $this->_helper->setDataStructure($structure);
     }
     
     // If only this was public to begin with!

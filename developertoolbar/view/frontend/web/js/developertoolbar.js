@@ -17,7 +17,9 @@
             }
         });
         
-        $('.js-developertoolbar__toggle').on('click', function(){
+        $('.js-developertoolbar__toggle').on('click', function(ev){
+            ev.preventDefault();
+            
             // find the associated item
             var $item = $(this).closest('.developertoolbar__list-item').find('.developertoolbar__ul').first();
             
