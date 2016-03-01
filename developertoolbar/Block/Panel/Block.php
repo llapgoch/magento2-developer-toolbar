@@ -57,6 +57,7 @@ class Block extends AbstractPanel{
         
         foreach($els as $name => $el){
             $childrenHtml = '';
+            
             if(isset($el['children'])){
                 $childrenHtml = $this->buildHtmlStructure($el['children'], $level + $this->_levelIncrement);
             }
@@ -65,10 +66,10 @@ class Block extends AbstractPanel{
                 ->reset()
                 ->addAttribute('data-layout-name', $this->_helper->makeLayoutNameIntoClass($name));
             
-            $html .= $this->_itemBlock->setItem($el)->setName($name)
+            $html .= $this->_itemBlock->setItem($el)
+                ->setExtras($this->getBlockExtras($name, $el))
+                ->setName($name)
                 ->setChildrenHtml($childrenHtml)
-                ->setIsCollapsible(true)
-                ->setCollapseText('')
                 ->toHtml();
         }
         
@@ -76,6 +77,34 @@ class Block extends AbstractPanel{
             ->setContents($html)
             ->setLevel($level)
             ->toHtml();
+    }
+    
+    public function getBlockExtras($name, $data){
+        
+        if(isset($data['type'])){
+            $extras[] = $data['type'];
+        }
+        
+        $block = $this->_layout->getBlock($name);
+        
+        if($block){
+            if($block instanceof \Magento\Cms\Block\Block){
+                $extras[] = $this->_makeSpan('identifier', $block->getBlockId());
+            }
+            
+            if($block instanceof \Magento\Cms\Block\Page){
+                $extras[] = $block->getPage()->getIdentifier();
+            }
+            
+            if($block instanceof \Magento\Framework\View\Element\Template){
+                $extras[] = $block->getTemplate();
+            }
+            
+            $extras[] = $block->getType();
+            
+        }
+        
+        return $extras;
     }
     
     public function buildCompleteElementStructure($elements)

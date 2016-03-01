@@ -9,7 +9,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
     const DEVELOPER_TOOLBAR_NAME = "llapgoch.developertoolbar";
     
     protected $_dataStructure;
-    protected $_layout;
     
     // Use a proxy to sort out the circular reference
     public function __construct(
@@ -51,10 +50,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
     
     protected function _isForbidden($layoutName, $forbidden = array())
     {
-        if(in_array($layoutName, $forbidden)){
-            return true;
-        }
-        
         // Don't wrap for AJAX calls
         if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) 
             && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'){

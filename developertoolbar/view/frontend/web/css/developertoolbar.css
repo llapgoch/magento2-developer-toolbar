@@ -235,6 +235,6 @@
 .developertoolbar__ul.is-active, 
 .developertoolbar__ul.level_0 {
     height: auto;
-    max-height: 300px;
+    max-height: 1000px;
 /*    transform: scaleY(1);*/
 }

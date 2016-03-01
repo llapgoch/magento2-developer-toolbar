@@ -6,6 +6,13 @@
         <a href="#" class="developertoolbar__toggle js-developertoolbar__toggle">
     <?php endif; ?>
         <span><?php echo $block->getName(); ?></span>
+        
+        <?php if($extras = $block->getExtras()): ?>
+            <span class="developertoolbar__extras">
+                <?php echo " | " . implode(" | ", $extras);?>
+            </span>
+        <?php endif;?>
+        
     <?php if($_childrenHtml): ?>
         </a>
     <?php endif; ?>
