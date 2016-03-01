@@ -1,5 +1,5 @@
 <?php
-namespace Llapgoch\Developertoolbar\Model\Block;
+namespace Llapgoch\Developertoolbar\Block\View\AbstractBlock;
 
 class Plugin{    
     protected $_helper;

@@ -12,9 +12,9 @@ abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
     
     public function __construct(
             \Magento\Framework\View\Element\Template\Context $context, 
+            array $data = [],
             \Llapgoch\Developertoolbar\Block\Panel\Listing\Item $itemBlock,
-            \Llapgoch\Developertoolbar\Block\Panel\Listing\Container $itemContainer, 
-            array $data = []){
+            \Llapgoch\Developertoolbar\Block\Panel\Listing\Container $itemContainer){
             
         $this->_itemBlock = $itemBlock;
         $this->_itemContainer = $itemContainer;

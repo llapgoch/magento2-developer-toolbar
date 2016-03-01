@@ -10,7 +10,6 @@ class Block extends AbstractPanel{
     protected $_layout;
     protected $_helper;
     protected $_levelIncrement = 10;
-    protected $_elementPool = array();
     
     public function __construct(
             \Magento\Framework\View\Element\Template\Context $context, 
@@ -29,7 +28,6 @@ class Block extends AbstractPanel{
         $this->_helper = $helper;
         $this->_buttonTitle = 'Blocks';
         $this->_cssClassSuffix = 'block';
-            
     }
     
     public function getContent()

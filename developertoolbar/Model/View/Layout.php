@@ -75,7 +75,7 @@ class Layout extends \Magento\Framework\View\Layout{
 
         $htmlTag = $this->structure->getAttribute($name, Element::CONTAINER_OPT_HTML_TAG);
         
-        // This is the change we need to make for the developer toolbar - if only we could use a plugin for this!!
+        // This is the change we need to make for the developer toolbar - if only we could use a plugin for this!
         $html = $this->_helper->wrapContent($name, $html);
 
         $html = sprintf('<%1$s%2$s%3$s>%4$s</%1$s>', $htmlTag, $htmlId, $htmlClass, $html);

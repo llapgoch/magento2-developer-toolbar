@@ -1,6 +1,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <type name="Magento\Framework\View\Element\AbstractBlock">
-        <plugin name="llapgoch_developertoolbar_block_creation_marker" type="Llapgoch\Developertoolbar\Model\Block\Plugin" sortOrder="10" disabled="false" />
+        <plugin name="llapgoch_developertoolbar_block_creation_marker" type="Llapgoch\Developertoolbar\Block\View\AbstractBlock\Plugin" sortOrder="10" disabled="false" />
     </type>
     
     <preference for="Magento\Framework\View\LayoutInterface" type="Llapgoch\Developertoolbar\Model\View\Layout" />
