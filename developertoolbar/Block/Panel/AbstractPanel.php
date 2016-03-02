@@ -9,7 +9,10 @@ abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
     protected $_buttonTitle = 'Toolbar Button';
     protected $_cssClassPrefix = 'developertoolbar-panel-';
     protected $_cssClassSuffix = 'default';
-    protected $_requiredScripts = array("developertoolbar" => []);
+    protected $_requiredScripts = array(
+        "toolbar.widget" => [],
+        "developertoolbar" => []
+    );
     
     public function __construct(
             \Magento\Framework\View\Element\Template\Context $context, 
@@ -19,7 +22,7 @@ abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
             
         $this->_itemBlock = $itemBlock;
         $this->_itemContainer = $itemContainer;
-            
+
         parent::__construct($context, $data);
     }
     
@@ -27,7 +30,7 @@ abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
     {
         parent::_prepareLayout();
         $name = $this->getNameInLayout();
-
+        
         // Add the blocks as children of this, so that the commenting exclusions take effect
         $this->_layout->addBlock($this->_itemBlock, $name . 'list.item', $name);
         $this->_layout->addBlock($this->_itemContainer, $name . 'list.container', $name);

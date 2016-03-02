@@ -1,4 +1,5 @@
 requirejs(['jquery'], function($){
+    return;
     $('.js-developertoolbar__button-link').on('click', function(ev){
         ev.preventDefault();
 
@@ -32,7 +33,10 @@ requirejs(['jquery'], function($){
             $this.removeClass('is-active');
         }else{
             $item.animate({
-                'height': $ul.outerHeight()
+                'height': $ul.outerHeight(),
+                'complete': function(){
+                    
+                }
             }, 250);
             
             $item.addClass('is-active');
