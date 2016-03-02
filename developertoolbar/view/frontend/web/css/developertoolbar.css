@@ -222,19 +222,17 @@
     background-color: #F7D74D;
 }
 
-.developertoolbar__ul {
+.developertoolbar__list {
     overflow: hidden;
-    position: relative;
-    max-height: 0;
-/*    transform: scaleY(0);*/
-    padding-left: 1em !important;
-    transition: all 500ms ease-in-out;
-    -webkit-transition: all 500ms ease-in-out;
+    height: 0;
 }
 
-.developertoolbar__ul.is-active, 
-.developertoolbar__ul.level_0 {
+.developertoolbar__list.level_0,
+.developertoolbar__list.open{
     height: auto;
-    max-height: 1000px;
-/*    transform: scaleY(1);*/
+}
+
+.developertoolbar__ul {
+    position: relative;
+    padding-left: 1em !important;
 }

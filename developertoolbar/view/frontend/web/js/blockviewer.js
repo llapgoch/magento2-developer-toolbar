@@ -29,7 +29,6 @@ requirejs(['jquery'], function($){
             return false;
         }
 
-
         // Change this to be a normal for loop, looking for an end comment
         var currentBlock = blocks.startBlock.get(0);
         var endBlock = blocks.endBlock.get(0);
