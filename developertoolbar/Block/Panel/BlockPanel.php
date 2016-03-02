@@ -3,7 +3,7 @@
 namespace Llapgoch\Developertoolbar\Block\Panel;
 
 
-class Block extends AbstractPanel{
+class BlockPanel extends AbstractPanel{
     /**
      * @var \Magento\Framework\View\Layout
      */
@@ -20,7 +20,7 @@ class Block extends AbstractPanel{
             array $data = []
         ){
             
-        parent::__construct($context, $data, $itemBlock, $itemContainer);
+        parent::__construct($context, $itemBlock, $itemContainer, $data);
         
         $itemBlock->setTemplate('toolbar/block/list/item-block.phtml');
         $this->_layout = $layout;
