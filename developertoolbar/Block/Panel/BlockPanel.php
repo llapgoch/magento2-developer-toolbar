@@ -28,6 +28,8 @@ class BlockPanel extends AbstractPanel{
         $this->_helper = $helper;
         $this->_buttonTitle = 'Blocks';
         $this->_cssClassSuffix = 'block';
+        
+        $this->_requiredScripts['blockviewer'] = [];
     }
     
     public function getContent()
