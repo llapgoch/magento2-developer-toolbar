@@ -34,7 +34,7 @@ define([
            // Button click event
            events[this.options.buttonLinkAction] = function(event) {
                event.preventDefault();
-
+               
                var $item = $(event.target).closest(this.options.toolbarItemSelector),
                    active = $item.hasClass(this.options.toolbarItemActiveClass);
             
@@ -45,6 +45,7 @@ define([
                }
            };
            
+           // Toggles click events
            events[this.options.toolbarToggleAction] = function(event) {
                event.preventDefault();
                var self = this;
@@ -62,7 +63,7 @@ define([
                    $item.animate({
                        'height': 0
                    }, this.options.animateCloseTime);
-            
+                   
                    $item.removeClass(activeClass);
                }else{
                    $item.animate({
@@ -73,7 +74,7 @@ define([
                        },
                        'delay': this.options.animateCloseTime
                    });
-            
+                   
                    $item.addClass(activeClass);
                    $this.addClass(activeClass);
                }  
