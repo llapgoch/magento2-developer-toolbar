@@ -10,8 +10,7 @@ abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
     protected $_cssClassPrefix = 'developertoolbar-panel-';
     protected $_cssClassSuffix = 'default';
     protected $_requiredScripts = array(
-        "toolbar.widget" => [],
-        "developertoolbar" => []
+        "toolbar.widget" => []
     );
     
     public function __construct(

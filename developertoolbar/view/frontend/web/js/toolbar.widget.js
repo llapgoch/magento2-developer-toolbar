@@ -2,7 +2,7 @@ define([
     'jquery',
     'jquery/ui',
 ], function ($) {
-   $.widget('llapgoch.developertoolbar', {
+   $.widget('llapgoch.devtoolbar', {
        options: {
            // Actions
            buttonLinkAction: 'click .js-developertoolbar__button-link',
@@ -84,5 +84,5 @@ define([
        }
    }) 
    
-   return $.llapgoch.developertoolbar;
+   return $.llapgoch.devtoolbar;
 });

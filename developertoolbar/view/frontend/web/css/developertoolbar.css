@@ -161,8 +161,8 @@
     background-color: #7d29d2;
     z-index: 900;
     opacity: 0.5;
-    transition: all 500ms ease-in-out;
-    -webkit-transition: all 500ms ease-in-out;
+    transition: width 500ms ease-in-out, height 500ms ease-in-out, top 500ms ease-in-out, left 500ms ease-in-out;
+    -webkit-transition: width 500ms ease-in-out, height 500ms ease-in-out, top 500ms ease-in-out, left 500ms ease-in-out;
 }
 
 .developertoolbar__toggle::before {

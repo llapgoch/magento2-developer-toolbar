@@ -6,7 +6,6 @@ define([
        _blockTimeout: null,
        _commentBlocks: null,
        overlay: null,
-       blockErrorMessage: "The block's dimensions could not be determined",
        
        options: {
            // Classes
@@ -18,38 +17,48 @@ define([
            toggleSelector: '.js-developertoolbar__highlight-toggle',
            
            // Data Attributes
-           dataLayoutName: 'layout-name'
+           dataLayoutName: 'layout-name',
            
-           namePrefix: "-start-viewer";
-           nameSuffix: "-end-viewer";
-           markerMainName: "developer-toolbar-dom-marker";
+           namePrefix: "-start-viewer",
+           nameSuffix: "-end-viewer",
+           markerMainName: "developer-toolbar-dom-marker",
+           
+           blockErrorMessage: "The block's dimensions could not be determined",
+           defaultFade: { 
+               effect: "fade", 
+               duration: 250 
+           }
        },
        
        _create: function(){
            this._super();
+           this._markApplicableToggles();
            this._addEvents();
        },
        
-       _addEvents: function(){
-           // Apply enabled classes to clickable blocks
-           var events = {};
-           
+       _markApplicableToggles: function(){
+           var self = this;
            
            $(this.options.toggleSelector, this.element).each(function(){
                var $this = $(this),
-                   blockName = $this.data(this.options.dataLayoutName);
+                   blockName = $this.data(self.options.dataLayoutName);
                    
                if(!blockName){
                    return;
                }
                
-               var blocks = this.getBlocksForMarker(blockName);
+               var blocks = self._getBlocksForMarker(blockName);
                
                if(blocks.startBlock && blocks.endBlock){
-                   $this.addClass(this.options.toggleEnabledClass);
+                   $this.addClass(self.options.toggleEnabledClass);
                }
            });
+       },
+       
+       _addEvents: function(){
+           var events = {};
            
+           // Apply enabled classes to clickable blocks
            events['click ' + this.options.toggleSelector] = function(event){
                var $this = $(event.target),
                    blockName = $this.data(this.options.dataLayoutName);
@@ -63,14 +72,14 @@ define([
                // Toggle the selection off
                if($this.hasClass(this.options.isActiveClass)){
                    $this.removeClass(this.options.isActiveClass);
-                   hideBlockOverlay();
+                   this.hideBlockOverlay();
                    return;
                }
            
                $(this.options.toggleSelector, this.element).removeClass(this.options.isActiveClass);
            
                if(!this.showOverlayForBlock(blockName)){
-                   console.notice(this.options.blockErrorMessage);
+                   console.error(this.options.blockErrorMessage);
                    return;
                }else{
                    $this.addClass(this.options.isActiveClass);
@@ -142,7 +151,7 @@ define([
                'top':Math.min(dims.top, dims2.top),
                'bottom':Math.max(dims.bottom, dims2.bottom)
            };
-       }
+       },
        
        _getDimensionObject: function($el){
            return {
@@ -157,27 +166,28 @@ define([
        _getTraversedDimensions: function(el){
            var $element = $(el);
            var resDims = this._getDimensionObject($element);
+           var self = this;
            
            $element.find('*').each(function(){
                var $this = $(this);
-               var obDims = this._getDimensionObject($this);
+               var obDims = self._getDimensionObject($this);
                
                // Don't include elements which have been included off screen to
                // left
                // E.g. Magento's menu does this giving an odd false height for 
                // header
-               if(this._isElementVisible($this) && obDims.right > 0){
-                   resDims = this._mergeDimensions(resDims, obDims);
+               if(self._isElementVisible($this) && obDims.right > 0){
+                   resDims = self._mergeDimensions(resDims, obDims);
                }
            });
            
            return resDims;
        },
        
-       
-       
        // Cache these, only refresh when needed!
        _getAllDocumentMarkers: function(refresh){
+           var self = this;
+           
            refresh = refresh === true ? true : false;
            
            if(this._commentBlocks && refresh == false){
@@ -187,7 +197,7 @@ define([
            this._commentBlocks = $("*").contents().filter(
                function(){
                    if(this.nodeType == 8){
-                       return this.nodeValue.indexOf(this.options.markerMainName) !== -1;
+                       return this.nodeValue.indexOf(self.options.markerMainName) !== -1;
                    }
                    
                    return false;
@@ -233,8 +243,9 @@ define([
        },
        
        showOverlayForBlock: function(blockName, performScroll){
-           var $startBlock;
-           var $endBlock;
+           var self = this,
+               $startBlock,
+               $endBlock;
            
            this._refreshDocumentMarkers();
            
@@ -247,7 +258,7 @@ define([
            performScroll = performScroll === false ? false : true;
            
            if(!$startBlock || !$endBlock || !dims){
-               hideBlockOverlay();
+               this.hideBlockOverlay();
                return false;
            }
            
@@ -262,7 +273,9 @@ define([
            var scrollPadding = 25;
            var $body = $(this.document.body);
            
-           this.overlay.show().css({
+           this.showBlockOverlay();
+           
+           this.overlay.css({
                'left':dims.left,
                'top':dims.top,
                'width':width,
@@ -270,20 +283,18 @@ define([
            });
            
            if($body.scrollTop() !== dims.top - scrollPadding && performScroll){
-               $(body.animate({scrollTop:dims.top - scrollPadding}, 500);
+               $body.animate({scrollTop:dims.top - scrollPadding}, 500);
            }
-           
-           
            
            this._on(this.window, {
                'resize': function(){
-                   if(this._blockTimeout){
-                       window.clearTimeout(this._blockTimeout);
-                       this._blockTimeout = null;
+                   if(self._blockTimeout){
+                       window.clearTimeout(self._blockTimeout);
+                       self._blockTimeout = null;
                    }
                
-                   this._blockTimeout = window.setTimeout(function(){
-                       this.showOverlayForBlock(blockName, false);
+                   self._blockTimeout = window.setTimeout(function(){
+                       self.showOverlayForBlock(blockName, false);
                    }, 150);
                }
            });
@@ -291,13 +302,47 @@ define([
            return true;
        },
        
-       function hideBlockOverlay(){
+       hideToggles: function(){
+           this._hide($(this.options.toggleSelector, this.element), this.options.defaultFade);
+       },
+       
+       showToggles: function(){
+           this._show($(this.options.toggleSelector + '.' + this.options.toggleEnabledClass, this.element), this.options.defaultFade);
+       },
+       
+       hideBlockOverlay: function(){
            if(this.overlay){
-               this.overlay.hide();
+               this._hide(this.overlay, this.options.defaultFade);
            }
            
            this._off(this.window, "resize");
        },
+       
+       showBlockOverlay: function(){
+           if(this.overlay){
+               this._show(this.overlay, this.options.defaultFade);
+           }
+       },
+       
+       disable: function() {
+           this.hideBlockOverlay();
+           this.hideToggles();
+           this._super();
+       },
+       
+       enable: function() {
+           this.showBlockOverlay();
+           this.showToggles();
+           this._super();
+       },
+       
+       destroy: function(){
+           this._super();
+           
+           if(this.overlay){
+               this.overlay.remove();
+           }
+       }
        
    });
    
