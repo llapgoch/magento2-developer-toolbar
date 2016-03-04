@@ -9,12 +9,12 @@ define([
        
        options: {
            // Classes
-           overlayClass: 'developertoolbar__overlay',
+           overlayClass: 'devbar__overlay',
            toggleEnabledClass: 'enabled',
            isActiveClass: 'is-active',
            
            // Selectors
-           toggleSelector: '.js-developertoolbar__highlight-toggle',
+           toggleSelector: '.js-devbar__highlight-toggle',
            
            // Data Attributes
            dataLayoutName: 'layout-name',
@@ -60,9 +60,9 @@ define([
            
            // Apply enabled classes to clickable blocks
            events['click ' + this.options.toggleSelector] = function(event){
-               var $this = $(event.target),
+               var $this = $(event.currentTarget),
                    blockName = $this.data(this.options.dataLayoutName);
-               
+                   
                event.preventDefault();
            
                if(!$this.hasClass(this.options.toggleEnabledClass)){

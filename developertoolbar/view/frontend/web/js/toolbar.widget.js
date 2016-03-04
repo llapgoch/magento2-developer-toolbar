@@ -5,17 +5,17 @@ define([
    $.widget('llapgoch.devtoolbar', {
        options: {
            // Actions
-           buttonLinkAction: 'click .js-developertoolbar__button-link',
-           toolbarToggleAction: 'click .js-developertoolbar__toggle',
+           buttonLinkAction: 'click .js-devbar__button-link',
+           toolbarToggleAction: 'click .js-devbar__toggle',
            
            // Selectors
-           toolbarListItemSelector: '.developertoolbar__list-item',
-           toolbarItemSelector: '.js-developertoolbar__item',
-           toolbarListSelector: '.developertoolbar__list',
-           toolbarListInnerSelector: '.developertoolbar__ul',
+           toolbarListItemSelector: '.devbar__list-item',
+           toolbarItemSelector: '.js-devbar__item',
+           toolbarListSelector: '.devbar__list',
+           toolbarListInnerSelector: '.devbar__ul',
            
            // Active Classes
-           toolbarItemActiveClass: 'developertoolbar__item--active',
+           toolbarItemActiveClass: 'devbar__item--active',
            toolbarToggleActiveClass: 'is-active',
            itemOpenClass: 'open',
            
@@ -35,7 +35,7 @@ define([
            events[this.options.buttonLinkAction] = function(event) {
                event.preventDefault();
                
-               var $item = $(event.target).closest(this.options.toolbarItemSelector),
+               var $item = $(event.currentTarget).closest(this.options.toolbarItemSelector),
                    active = $item.hasClass(this.options.toolbarItemActiveClass);
             
                if(!active){
@@ -51,7 +51,7 @@ define([
                var self = this;
                
                // find the associated item
-               var $this = $(event.target),
+               var $this = $(event.currentTarget),
                    $item = $this.closest(this.options.toolbarListItemSelector)
                                .find(this.options.toolbarListSelector).first(),
                    $inner   = $item.find(this.options.toolbarListInnerSelector).first();

@@ -5,34 +5,29 @@
 // =============================================
 */
 
-.developertoolbar,
-.developertoolbar * {
+.devbar,
+.devbar * {
     font-family: Tahoma;
     box-sizing: border-box;
 }
-.developertoolbar {
-    color: #333;
-}
 
-.developertoolbar__list ul,
-.developertoolbar__panel-title {
+.devbar__list ul,
+.devbar__panel-title {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.developertoolbar a {
+.devbar a {
     text-decoration: none;
-    color: steelblue;
+    color: #ff731b;
 }
-.developertoolbar__panel a:hover {
+.devbar__panel a:hover {
     text-decoration: underline;
 }
 
-@media (max-width: 26em) {
-    .developertoolbar * {
-        font-size: 0.75rem !important;
-    }
+.devbar * {
+    font-size: 1em;
 }
 
 /*
@@ -41,41 +36,41 @@
 // =============================================
 */
 
-.developertoolbar__list ul ul {
-    border-left: 2px dashed gainsboro;
+.devbar__list ul ul {
+    border-left: 1px solid gainsboro;
     padding-left: 1em;
 }
-.developertoolbar__list .level_10 {
+.devbar__list .level_10 {
     border-left-color: red;
 }
-.developertoolbar__list .level_20 {
+.devbar__list .level_20 {
     border-left-color: blue;
 }
-.developertoolbar__list .level_30 {
+.devbar__list .level_30 {
     border-left-color: green;
 }
-.developertoolbar__list .level_40 {
+.devbar__list .level_40 {
     border-left-color: orange;
 }
-.developertoolbar__list .level_50 {
+.devbar__list .level_50 {
     border-left-color: purple;
 }
-.developertoolbar__list .level_60 {
+.devbar__list .level_60 {
     border-left-color: lime;
 }
-.developertoolbar__list .level_70 {
+.devbar__list .level_70 {
     border-left-color: pink;
 }
-.developertoolbar__list .level_80 {
+.devbar__list .level_80 {
     border-left-color: tomato;
 }
-.developertoolbar__list .level_90 {
+.devbar__list .level_90 {
     border-left-color: saddlebrown;
 }
-.developertoolbar__list .level_100 {
+.devbar__list .level_100 {
     border-left-color: lightgreen;
 }
-.developertoolbar__list .level_110 {
+.devbar__list .level_110 {
     border-left-color: salmon;
 }
 
@@ -86,15 +81,14 @@
 // =============================================
 */
 
-.developertoolbar {
+.devbar {
     width: 100%;
     position: fixed;
     bottom: 0;
     z-index: 1000;
 }
 
-.developertoolbar__bg {
-    border-top: 2px solid gainsboro;
+.devbar__bg {
     background: #eaeaea;
     z-index: 100;
     position: absolute;
@@ -102,61 +96,60 @@
     height: 100%
 }
 
-.developertoolbar__item {
+.devbar__item {
     display: inline-block;
 }
 
-.developertoolbar__button{
+.devbar__button {
     z-index: 120;
     position: relative;
 }
 
-.developertoolbar__button-link, 
-.developertoolbar__button a:visited{
+.devbar__button-link, 
+.devbar__button a:visited{
     color: white;
 }
 
-.developertoolbar__button-link {
+.devbar__button-link {
     display: block;
     text-decoration: none;
     padding: 0.3em 0.6em;
 }
 
-.developertoolbar__button-link.is-active,
-.developertoolbar__button a.is-active:visited {
+.devbar__button-link.is-active,
+.devbar__button a.is-active:visited {
     color: #f4e829;
 }
 
-.developertoolbar__panel {
+.devbar__panel {
     transform: translateY(0);
     transition: transform 0.25s;
     max-width: 90vw;
-    background: white;
+    background: #09162b;
     position: absolute;
     z-index: 0;
     top: 0;
-    border: 2px solid gainsboro;
     border-bottom: 0;
+    color: #99b8d6;
+    /*color: #f9f9f9;*/
+    font-size: 11px;
 }
 
-.developertoolbar__item--active .developertoolbar__panel {
+.devbar__item--active .devbar__panel {
     transform: translateY(-100%);
 }
 
-.developertoolbar__panel-title {
-    font-size: 1em;
-    padding: 0.6em 1em;
-    background-color: #eaeaea;
-    border-bottom: 2px solid gainsboro;
+.devbar__panel-head {
+    display: none;
 }
 
-.developertoolbar__panel-body {
+.devbar__panel-body {
     max-height: 300px;
     overflow-y: scroll;
     padding: 1em 1em 1em 0;
 }
 
-.developertoolbar__overlay {
+.devbar__overlay {
     position: absolute;
     background-color: #7d29d2;
     z-index: 900;
@@ -165,7 +158,7 @@
     -webkit-transition: width 500ms ease-in-out, height 500ms ease-in-out, top 500ms ease-in-out, left 500ms ease-in-out;
 }
 
-.developertoolbar__toggle::before {
+.devbar__toggle::before {
     content: '';
     width: 0;
     height: 0;
@@ -174,68 +167,68 @@
     
     border-top: 3px solid transparent;
     border-bottom: 3px solid transparent;
-    border-left: 4px solid #333;
+    border-left: 4px solid #99b8d6;
     border-right: none;
 
     margin-right: 0.3em;
     margin-left: -2px;
 }
 
-.developertoolbar__toggle.is-active::before {
+.devbar__toggle.is-active::before {
     border-right: 3px solid transparent;
     border-left: 3px solid transparent;
-    border-top: 4px solid #333;
+    border-top: 4px solid #99b8d6;
     border-bottom: none;
 }
 
 
-.developertoolbar__highlight-toggle {
+.devbar__highlight-toggle {
     float: right;
     font-size: 80%;
     display: none;
 }
 
-.developertoolbar__highlight-toggle.enabled {
+.devbar__highlight-toggle.enabled {
     display: block;
 }
 
-.developertoolbar__highlight-toggle.is-active{
+.devbar__highlight-toggle.is-active{
     color: #000000;
 }
 
 /*
 // =============================================
-// Colour Code
+// Colour Code Buttons
 // =============================================
 */
 
 /* Blocks */
-.developertoolbar-panel-block .developertoolbar__button-link {
+.devbar-panel-block .devbar__button-link {
     background-color: #BC1A30;
 }
 /* Handles */
-.developertoolbar-panel-handles .developertoolbar__button-link {
+.devbar-panel-handles .devbar__button-link {
     background-color: #2D6B9F;
 }
 /* JS */
-.developertoolbar-panel-js .developertoolbar__button-link {
+.devbar-panel-js .devbar__button-link {
     background-color: #F7D74D;
 }
 
-.developertoolbar__list {
+.devbar__list {
     overflow: hidden;
     height: 0;
 }
 
-.developertoolbar__list.level_0{
+.devbar__list.level_0{
     height: auto;
 }
 
-.developertoolbar__list.open{
+.devbar__list.open{
     height: auto !important;
 }
 
-.developertoolbar__ul {
+.devbar__ul {
     position: relative;
     padding-left: 1em !important;
 }
