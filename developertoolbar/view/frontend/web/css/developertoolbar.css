@@ -5,14 +5,17 @@
 // =============================================
 */
 
+body {
+    margin: 0;
+}
+
 .devbar,
 .devbar * {
     font-family: Tahoma;
     box-sizing: border-box;
 }
 
-.devbar__list ul,
-.devbar__panel-title {
+.devbar__list ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -20,8 +23,8 @@
 
 .devbar a {
     text-decoration: none;
-    color: #ff731b;
 }
+
 .devbar__panel a:hover {
     text-decoration: underline;
 }
@@ -30,48 +33,105 @@
     font-size: 1em;
 }
 
+
 /*
 // =============================================
-// Nested Lists
+// Colors
 // =============================================
 */
 
-.devbar__list ul ul {
-    border-left: 1px solid gainsboro;
-    padding-left: 1em;
+/* Blocks */
+.devbar-panel-block .devbar__button-link {
+    background-color: #BC1A30;
+}
+/* Handles */
+.devbar-panel-handles .devbar__button-link {
+    background-color: #2D6B9F;
+}
+/* JS */
+.devbar-panel-js .devbar__button-link {
+    background-color: #F7D74D;
+}
+
+.devbar__item-name,
+.devbar__highlight-toggle {
+    color: #ff731b;
+}
+
+.devbar__button-link, 
+.devbar__button a:visited{
+    color: white;
+}
+
+.devbar__button-link.is-active,
+.devbar__button a.is-active:visited {
+    color: #f4e829;
+}
+
+.devbar__panel {
+    color: #99b8d6;
+}
+
+.devbar__bg {
+    background: #eaeaea;
+}
+
+.devbar__panel,
+.devbar__info {
+    background: #09162b;
+}
+
+.devbar__overlay {
+    background-color: #7d29d2;
+}
+
+/*
+// =============================================
+// Colors - List Trail
+// =============================================
+*/
+
+ul .devbar__ul {
+    background-color: gainsboro;
+    padding-left: 10px;
+}
+@media(max-width: 32em) {
+    ul .devbar__ul {
+        padding-left: 5px;
+    }
 }
 .devbar__list .level_10 {
-    border-left-color: red;
+    background-color: red;
 }
 .devbar__list .level_20 {
-    border-left-color: blue;
+    background-color: blue;
 }
 .devbar__list .level_30 {
-    border-left-color: green;
+    background-color: green;
 }
 .devbar__list .level_40 {
-    border-left-color: orange;
+    background-color: orange;
 }
 .devbar__list .level_50 {
-    border-left-color: purple;
+    background-color: purple;
 }
 .devbar__list .level_60 {
-    border-left-color: lime;
+    background-color: lime;
 }
 .devbar__list .level_70 {
-    border-left-color: pink;
+    background-color: pink;
 }
 .devbar__list .level_80 {
-    border-left-color: tomato;
+    background-color: tomato;
 }
 .devbar__list .level_90 {
-    border-left-color: saddlebrown;
+    background-color: saddlebrown;
 }
 .devbar__list .level_100 {
-    border-left-color: lightgreen;
+    background-color: lightgreen;
 }
 .devbar__list .level_110 {
-    border-left-color: salmon;
+    background-color: salmon;
 }
 
 
@@ -89,7 +149,6 @@
 }
 
 .devbar__bg {
-    background: #eaeaea;
     z-index: 100;
     position: absolute;
     width: 100%;
@@ -105,53 +164,58 @@
     position: relative;
 }
 
-.devbar__button-link, 
-.devbar__button a:visited{
-    color: white;
-}
-
 .devbar__button-link {
     display: block;
     text-decoration: none;
     padding: 0.3em 0.6em;
 }
 
-.devbar__button-link.is-active,
-.devbar__button a.is-active:visited {
-    color: #f4e829;
-}
-
 .devbar__panel {
-    transform: translateY(0);
-    transition: transform 0.25s;
-    max-width: 90vw;
-    background: #09162b;
+    max-height: 90vh;
     position: absolute;
     z-index: 0;
     top: 0;
+    left: 0;
+    width: 100%;
     border-bottom: 0;
-    color: #99b8d6;
-    /*color: #f9f9f9;*/
     font-size: 11px;
+    opacity: 0.95;
 }
 
 .devbar__item--active .devbar__panel {
     transform: translateY(-100%);
 }
 
-.devbar__panel-head {
-    display: none;
+/*
+// =============================================
+// Toolbar Panel Header
+// =============================================
+*/
+
+.devbar__panel-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 10px;
+}
+.devbar__panel-title {
+    margin: 0;
+}
+.devbar__title-actions {
+    margin-left: auto;
 }
 
 .devbar__panel-body {
-    max-height: 300px;
     overflow-y: scroll;
-    padding: 1em 1em 1em 0;
 }
 
 .devbar__overlay {
     position: absolute;
-    background-color: #7d29d2;
     z-index: 900;
     opacity: 0.5;
     transition: width 500ms ease-in-out, height 500ms ease-in-out, top 500ms ease-in-out, left 500ms ease-in-out;
@@ -164,14 +228,13 @@
     height: 0;
     display: inline-block;
     vertical-align: middle;
-    
     border-top: 3px solid transparent;
     border-bottom: 3px solid transparent;
     border-left: 4px solid #99b8d6;
     border-right: none;
-
-    margin-right: 0.3em;
+    margin-right: 6px;
     margin-left: -2px;
+    margin-top: -3px;
 }
 
 .devbar__toggle.is-active::before {
@@ -181,54 +244,43 @@
     border-bottom: none;
 }
 
+.devbar__info {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 2px 6px;
+    border-top: 1px solid #1A3156;
+}
+
 
 .devbar__highlight-toggle {
-    float: right;
-    font-size: 80%;
+    margin-left: auto;
     display: none;
 }
 
-.devbar__highlight-toggle.enabled {
+.devbar__highlight-toggle.is-active {
     display: block;
 }
 
-.devbar__highlight-toggle.is-active{
-    color: #000000;
-}
 
-/*
-// =============================================
-// Colour Code Buttons
-// =============================================
-*/
-
-/* Blocks */
-.devbar-panel-block .devbar__button-link {
-    background-color: #BC1A30;
-}
-/* Handles */
-.devbar-panel-handles .devbar__button-link {
-    background-color: #2D6B9F;
-}
-/* JS */
-.devbar-panel-js .devbar__button-link {
-    background-color: #F7D74D;
-}
 
 .devbar__list {
     overflow: hidden;
     height: 0;
 }
 
-.devbar__list.level_0{
+.devbar__list.level_0 {
     height: auto;
 }
 
-.devbar__list.open{
+.devbar__list.is-active {
     height: auto !important;
 }
 
 .devbar__ul {
     position: relative;
-    padding-left: 1em !important;
 }
+
+
+

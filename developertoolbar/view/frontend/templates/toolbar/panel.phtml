@@ -7,10 +7,15 @@
     
     <div class="devbar__panel js-devbar__panel">
         <div class="devbar__panel-inner">
-            <div class="devbar__panel-head">
+            <div class="devbar__panel-header">
                 <h4 class="devbar__panel-title">
                     <?php echo $block->getTitle();?>
                 </h4>
+                <div class="devbar__title-actions">
+                    <label>Class Type:
+                        <input type="checkbox" checked="checked" value="" id="show_class_type" />
+                    </label>
+                </div>
             </div>
     
             <div class="devbar__panel-body">

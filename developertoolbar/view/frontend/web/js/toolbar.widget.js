@@ -17,7 +17,7 @@ define([
            // Active Classes
            toolbarItemActiveClass: 'devbar__item--active',
            toolbarToggleActiveClass: 'is-active',
-           itemOpenClass: 'open',
+           itemOpenClass: 'is-active',
            
            // Settings
            animateCloseTime: 250

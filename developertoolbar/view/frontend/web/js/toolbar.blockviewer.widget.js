@@ -10,7 +10,7 @@ define([
        options: {
            // Classes
            overlayClass: 'devbar__overlay',
-           toggleEnabledClass: 'enabled',
+           toggleEnabledClass: 'is-active',
            isActiveClass: 'is-active',
            
            // Selectors

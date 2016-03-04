@@ -4,13 +4,14 @@
 <li class="devbar__list-item">
     <div class="devbar__info">
         <?php if($_childrenHtml): ?>
-            <a href="#" class="devbar__toggle js-devbar__toggle"><span><?php echo $block->getName(); ?></span></a>
+            <a href="#" class="devbar__toggle devbar__item-name js-devbar__toggle"><span><?php echo $block->getName(); ?></span></a>
         <?php else: ?>
-            <span class=""><?php echo $block->getName(); ?></span>
+            <span class="devbar__item-name"><?php echo $block->getName(); ?></span>
         <?php endif; ?>
+        
         <?php if($extras = $block->getExtras()): ?>
             <span class="devbar__extras">
-                <?php echo " | " . implode(" | ", $extras);?>
+                <?php echo "&nbsp;|&nbsp;" . implode("&nbsp;|&nbsp;", $extras);?>
             </span>
         <?php endif;?>
         <a href="#" <?php echo $block->getOutputAttributes();?> class="devbar__highlight-toggle js-devbar__highlight-toggle"><?php echo __('Highlight') ?></a>
