@@ -58,7 +58,8 @@ define([
                    activeClass = this.options.toolbarToggleActiveClass;
                    
                if($item.hasClass(activeClass)){
-                   $item.removeClass(this.options.itemOpenClass);
+                   $item.removeClass(activeClass);
+                   $this.removeClass(activeClass);
                    
                    $item.animate({
                        'height': 0
@@ -67,17 +68,17 @@ define([
                    $item.removeClass(activeClass);
                }else{
                    $item.animate({
-                       'height': $inner.outerHeight(),
+                       'height': $inner.outerHeight()
                    },{
                        'complete': function(){
-                           $item.addClass(self.options.itemOpenClass);
+                           $item.addClass(activeClass);
                        },
                        'delay': this.options.animateCloseTime
                    });
                    
                    $item.addClass(activeClass);
                    $this.addClass(activeClass);
-               }  
+               }
            };
            
            this._on(this.element, events);

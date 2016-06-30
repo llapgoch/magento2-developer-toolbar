@@ -10,8 +10,10 @@ define([
        options: {
            // Classes
            overlayClass: 'devbar__overlay',
-           toggleEnabledClass: 'is-active',
+           toggleEnabledClass: 'is-enabled',
            isActiveClass: 'is-active',
+           isErrorClass: 'is-error',
+           existsClass: 'exists',
            
            // Selectors
            toggleSelector: '.js-devbar__highlight-toggle',
@@ -79,7 +81,10 @@ define([
                $(this.options.toggleSelector, this.element).removeClass(this.options.isActiveClass);
            
                if(!this.showOverlayForBlock(blockName)){
-                   console.error(this.options.blockErrorMessage);
+                   if(window.console) {
+                       console.error(this.options.blockErrorMessage);
+                       $this.addClass(this.options.isErrorClass);
+                   }
                    return;
                }else{
                    $this.addClass(this.options.isActiveClass);
@@ -243,9 +248,10 @@ define([
        },
        
        showOverlayForBlock: function(blockName, performScroll){
-           var self = this,
-               $startBlock,
-               $endBlock;
+           var  self = this,
+                $startBlock,
+                $endBlock,
+                $body = $('body');
            
            this._refreshDocumentMarkers();
            
@@ -256,7 +262,7 @@ define([
            $endBlock = markerBlocks.endBlock;
            
            performScroll = performScroll === false ? false : true;
-           
+
            if(!$startBlock || !$endBlock || !dims){
                this.hideBlockOverlay();
                return false;
@@ -264,14 +270,14 @@ define([
            
            if(!this.overlay){
                this.overlay = $('<div>').addClass(this.options.overlayClass);
-               $('body').append(this.overlay);
+               $body.append(this.overlay);
            }
            
            // Give them a min dimension of 10px
            var width = dims.right - dims.left || 10;
            var height = dims.bottom - dims.top || 10;
            var scrollPadding = 25;
-           var $body = $(this.document.body);
+
            
            this.showBlockOverlay();
            

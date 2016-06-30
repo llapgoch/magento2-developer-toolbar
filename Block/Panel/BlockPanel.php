@@ -34,9 +34,6 @@ class BlockPanel extends AbstractPanel{
     
     public function getContent()
     {
-        $blocks = $this->_layout->getAllBlocks();
-        $html = '';
-        
         $elements = $this->_layout->getStructure()->exportElements();
        
         // Make a tree of elements

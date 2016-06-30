@@ -55,8 +55,8 @@ body {
 .devbar__panel a,
 .devbar__panel a:visited,
 .devbar__item-name,
-.devbar__highlight-toggle {
-    color: #ff731b !important;
+a.devbar__highlight-toggle {
+    color: #ff731b;
 }
 
 .devbar__button-link, 
@@ -261,11 +261,17 @@ ul .devbar__ul {
     display: none;
 }
 
-.devbar__highlight-toggle.is-active {
+.devbar__highlight-toggle.is-enabled {
     display: block;
 }
 
+a.devbar__highlight-toggle.is-active{
+    color: #00aa00;
+}
 
+a.devbar__highlight-toggle.is-error {
+    color: #cc0000;
+}
 
 .devbar__list {
     overflow: hidden;
