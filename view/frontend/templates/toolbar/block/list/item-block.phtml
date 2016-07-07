@@ -4,7 +4,9 @@
 <li class="devbar__list-item">
     <div class="devbar__info">
         <?php if($_childrenHtml): ?>
-            <a href="#" class="devbar__toggle devbar__item-name js-devbar__toggle"><span><?php echo $block->getName(); ?></span></a>
+            <a href="#" class="devbar__toggle devbar__item-name js-devbar__toggle">
+                <span><?php echo $block->getName(); ?></span>
+            </a>
         <?php else: ?>
             <span class="devbar__item-name"><?php echo $block->getName(); ?></span>
         <?php endif; ?>

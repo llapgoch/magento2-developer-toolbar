@@ -29,6 +29,11 @@ define([
            this._addEvents();
        },
 
+       // Other classes should use these instead of accessing the options directly in case the variables change
+       getListItemSelector: function(){
+           return this.options.toolbarListItemSelector;
+       },
+
        _addEvents: function() {
            var events = {};
 

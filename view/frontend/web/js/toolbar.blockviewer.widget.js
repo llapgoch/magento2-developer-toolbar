@@ -36,6 +36,12 @@ define([
            this._super();
            this._markApplicableToggles();
            this._addEvents();
+
+           console.log(this._getToolbar().getListItemSelector());
+       },
+
+       _getToolbar: function(){
+           return this.element.data('llapgochDevtoolbar');
        },
        
        _markApplicableToggles: function(){
@@ -49,9 +55,7 @@ define([
                    return;
                }
                
-               var blocks = self._getBlocksForMarker(blockName);
-               
-               if(blocks.startBlock && blocks.endBlock){
+               if(self.hasBlockOverlay(blockName)){
                    $this.addClass(self.options.toggleEnabledClass);
                }
            });
@@ -246,27 +250,46 @@ define([
        _refreshDocumentMarkers: function(){
            this._getAllDocumentMarkers(true);
        },
+
+       hasBlockOverlay: function(blockName) {
+           var  $startBlock,
+                $endBlock,
+                dims,
+                $body = $('body');
+
+           this._refreshDocumentMarkers();
+
+           var dims = this._getDimensionsBetweenMarker(blockName);
+           var markerBlocks = this._getBlocksForMarker(blockName);
+
+           $startBlock = markerBlocks.startBlock;
+           $endBlock = markerBlocks.endBlock;
+
+           if(!$startBlock || !$endBlock || !dims){
+               return false;
+           }
+
+           return {
+               startBlock: $startBlock,
+               endBlock: $endBlock,
+               dims: dims
+           }
+       },
        
        showOverlayForBlock: function(blockName, performScroll){
            var  self = this,
-                $startBlock,
-                $endBlock,
-                $body = $('body');
-           
-           this._refreshDocumentMarkers();
-           
-           var dims = this._getDimensionsBetweenMarker(blockName);
-           var markerBlocks = this._getBlocksForMarker(blockName);
-           
-           $startBlock = markerBlocks.startBlock;
-           $endBlock = markerBlocks.endBlock;
-           
+                $body = $('body'),
+                dims,
+                blockData = this.hasBlockOverlay(blockName);
+
            performScroll = performScroll === false ? false : true;
 
-           if(!$startBlock || !$endBlock || !dims){
-               this.hideBlockOverlay();
-               return false;
+           if(!blockData){
+                this.hideBlockOverlay();
+                return false;
            }
+
+           dims = blockData.dims;
            
            if(!this.overlay){
                this.overlay = $('<div>').addClass(this.options.overlayClass);
