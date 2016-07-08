@@ -181,6 +181,7 @@ ul .devbar__ul {
     border-bottom: 0;
     font-size: 11px;
     opacity: 0.95;
+    -webkit-transition: transform 0.5s;
 }
 
 .devbar__item--active .devbar__panel {
@@ -291,6 +292,12 @@ a.devbar__highlight-toggle.is-error {
 
 .devbar__ul {
     position: relative;
+}
+
+.devbar__seperator{
+    padding-right: 8px;
+    margin-left: 8px;
+    border-left: 1px dotted white;
 }
 
 

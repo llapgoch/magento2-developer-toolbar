@@ -13,7 +13,7 @@
         
         <?php if($extras = $block->getExtras()): ?>
             <span class="devbar__extras">
-                <?php echo "&nbsp;|&nbsp;" . implode("&nbsp;|&nbsp;", $extras);?>
+                <?php echo "<span class='devbar__seperator'></span>" . implode("<span class='devbar__seperator'></span>", $extras);?>
             </span>
         <?php endif;?>
         <a href="#" <?php echo $block->getOutputAttributes();?> class="devbar__highlight-toggle js-devbar__highlight-toggle"><?php echo __('Highlight') ?></a>

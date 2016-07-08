@@ -297,9 +297,12 @@ define([
                this.overlay = $('<div>').addClass(this.options.overlayClass);
                $body.append(this.overlay);
            }
+
+
            
            // Give them a min dimension of 10px
-           var width = dims.right - dims.left || 10;
+           var maxWidth = $(window).width();
+           var width = Math.min(maxWidth - dims.left, dims.right - dims.left || 10);
            var height = dims.bottom - dims.top || 10;
            var scrollPadding = 25;
 
