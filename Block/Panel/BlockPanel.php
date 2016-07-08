@@ -86,7 +86,7 @@ class BlockPanel extends AbstractPanel{
         
         if($block){
             if($block instanceof \Magento\Cms\Block\Block){
-                $extras[] = $this->_makeSpan('identifier', $block->getBlockId());
+                $extras[] = $block->getBlockId();
             }
             
             if($block instanceof \Magento\Cms\Block\Page){
