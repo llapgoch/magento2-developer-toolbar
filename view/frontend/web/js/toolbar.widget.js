@@ -14,6 +14,9 @@ define([
            toolbarListSelector: '.devbar__list',
            toolbarListInnerSelector: '.devbar__ul',
 
+           toolbarListInfoSelector: '.devbar__info',
+           toolbarListInfoActiveClass: 'is-active',
+
            // Active Classes
            toolbarItemActiveClass: 'devbar__item--active',
            toolbarToggleActiveClass: 'is-active',
@@ -32,6 +35,22 @@ define([
        // Other classes should use these instead of accessing the options directly in case the variables change
        getListItemSelector: function(){
            return this.options.toolbarListItemSelector;
+       },
+
+       getToolbarListItemActiveClass: function(){
+           return this.options.toolbarListItemActiveClass;
+       },
+
+       getToolbarInfoSelector: function(){
+           return this.options.toolbarListInfoSelector;
+       },
+
+       getToolbarInfoActiveClass: function(){
+           return this.options.toolbarListInfoActiveClass;
+       },
+
+       getToolbarItemSelector: function(){
+           return this.options.toolbarItemSelector;
        },
 
        _addEvents: function() {

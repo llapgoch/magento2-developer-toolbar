@@ -31,13 +31,11 @@ define([
                duration: 250 
            }
        },
-       
+
        _create: function(){
            this._super();
            this._markApplicableToggles();
            this._addEvents();
-
-           console.log(this._getToolbar().getListItemSelector());
        },
 
        _getToolbar: function(){
@@ -74,14 +72,16 @@ define([
                if(!$this.hasClass(this.options.toggleEnabledClass)){
                    return;
                }
-           
+               
                // Toggle the selection off
                if($this.hasClass(this.options.isActiveClass)){
                    $this.removeClass(this.options.isActiveClass);
+
                    this.hideBlockOverlay();
                    return;
                }
-           
+
+               $(this._getToolbar().getToolbarInfoSelector(), this.element).removeClass(this.options.isActiveClass);
                $(this.options.toggleSelector, this.element).removeClass(this.options.isActiveClass);
            
                if(!this.showOverlayForBlock(blockName)){
@@ -92,6 +92,8 @@ define([
                    return;
                }else{
                    $this.addClass(this.options.isActiveClass);
+
+                   $this.closest(this._getToolbar().getToolbarInfoSelector()).addClass(this._getToolbar().getToolbarInfoActiveClass());
                }
            }
            

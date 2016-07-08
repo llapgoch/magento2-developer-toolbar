@@ -255,6 +255,9 @@ ul .devbar__ul {
     border-top: 1px solid #1A3156;
 }
 
+.devbar__info.is-active {
+    background: black;
+}
 
 .devbar__highlight-toggle {
     margin-left: auto;
