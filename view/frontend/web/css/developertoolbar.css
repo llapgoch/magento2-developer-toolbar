@@ -102,37 +102,37 @@ ul .devbar__ul {
     }
 }
 .devbar__list .level_10 {
-    background-color: red;
+    background-color: #031F73;
 }
 .devbar__list .level_20 {
-    background-color: blue;
+    background-color: #073673;
 }
 .devbar__list .level_30 {
-    background-color: green;
+    background-color: #0A4273;
 }
 .devbar__list .level_40 {
-    background-color: orange;
+    background-color: #0D4C73;
 }
 .devbar__list .level_50 {
-    background-color: purple;
+    background-color: #145873;
 }
 .devbar__list .level_60 {
-    background-color: lime;
+    background-color: #5087A0;
 }
 .devbar__list .level_70 {
-    background-color: pink;
+    background-color: #6087A0;
 }
 .devbar__list .level_80 {
-    background-color: tomato;
+    background-color: #7087A1;
 }
 .devbar__list .level_90 {
-    background-color: saddlebrown;
+    background-color: #737C94;
 }
 .devbar__list .level_100 {
-    background-color: lightgreen;
+    background-color: #7E788F;
 }
 .devbar__list .level_110 {
-    background-color: salmon;
+    background-color: #827287;
 }
 
 
