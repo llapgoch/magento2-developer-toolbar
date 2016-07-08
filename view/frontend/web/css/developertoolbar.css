@@ -183,6 +183,11 @@ ul .devbar__ul {
     opacity: 0.95;
     -webkit-transition: transform 0.5s;
 }
+@media(min-width: 64em) {
+    .devbar__panel {
+        max-width: 65%;
+    }
+}
 
 .devbar__item--active .devbar__panel {
     transform: translateY(-100%);
