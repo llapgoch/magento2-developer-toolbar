@@ -76,6 +76,7 @@ define([
                // Toggle the selection off
                if($this.hasClass(this.options.isActiveClass)){
                    $this.removeClass(this.options.isActiveClass);
+                   $this.closest(this._getToolbar().getToolbarInfoSelector()).removeClass(this.options.isActiveClass);
 
                    this.hideBlockOverlay();
                    return;
