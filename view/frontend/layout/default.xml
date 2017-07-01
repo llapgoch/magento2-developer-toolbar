@@ -8,6 +8,9 @@
          <container name="llapgoch.developertoolbar" htmlTag="div" htmlClass="devbar">
              <block class="Magento\Framework\View\Element\Template" name="llapgoch.developertoolbar.bg" template="Llapgoch_Developertoolbar::toolbar/background.phtml" />
              <block class="Llapgoch\Developertoolbar\Block\Panel\BlockPanel" name="llapgoch-developertoolbar-block" template="Llapgoch_Developertoolbar::toolbar/panel.phtml" />
+             <block class="Llapgoch\Developertoolbar\Block\Panel\HandlePanel" name="llapgoch-developertoolbar-handle" template="Llapgoch_Developertoolbar::toolbar/panel.phtml">
+
+             </block>
          </container>
      </body>
 </page>
