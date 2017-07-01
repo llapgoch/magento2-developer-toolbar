@@ -5,10 +5,12 @@ define([
    $.widget('llapgoch.devtoolbar', {
        options: {
            // Actions
+           identifier: 'llapgochDevtoolbar',
            buttonLinkAction: 'click .js-devbar__button-link',
            toolbarToggleAction: 'click .js-devbar__toggle',
 
            // Selectors
+           toolbarContainerSelector: '.devbar',
            toolbarListItemSelector: '.devbar__list-item',
            toolbarItemSelector: '.js-devbar__item',
            toolbarListSelector: '.devbar__list',
@@ -53,6 +55,22 @@ define([
            return this.options.toolbarItemSelector;
        },
 
+       closeAllPanels: function() {
+           var self = this;
+            $(this.options.toolbarItemSelector, this.getToolbarContainer()).each(function(){
+                var instance = $(this).data(self.options.identifier);
+                instance && instance.closePanel();
+            });
+       },
+
+       closePanel: function() {
+           this.element.removeClass(this.options.toolbarItemActiveClass);
+       },
+
+       getToolbarContainer: function() {
+           return this.element.closest(this.options.toolbarContainerSelector);
+       },
+
        _addEvents: function() {
            var events = {};
 
@@ -62,6 +80,8 @@ define([
 
                var $item = $(event.currentTarget).closest(this.options.toolbarItemSelector),
                    active = $item.hasClass(this.options.toolbarItemActiveClass);
+
+               this.closeAllPanels();
 
                if(!active){
                    $item.addClass(this.options.toolbarItemActiveClass);

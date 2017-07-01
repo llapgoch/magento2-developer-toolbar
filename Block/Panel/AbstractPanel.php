@@ -42,7 +42,8 @@ abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
         return __($this->_title);
     }
     
-    public function getRequiredScripts(){
+    public function getRequiredScripts()
+    {
         return json_encode($this->_requiredScripts, JSON_FORCE_OBJECT);
     }
     

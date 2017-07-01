@@ -22,4 +22,9 @@ class HandlePanel extends AbstractPanel
         $this->_buttonTitle = 'Handles';
         $this->_cssClassSuffix = 'handle';
     }
+
+    public function getContent()
+    {
+        // TODO: Implement getContent() method.
+    }
 }
