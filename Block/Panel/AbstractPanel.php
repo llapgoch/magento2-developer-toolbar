@@ -14,28 +14,16 @@ abstract class AbstractPanel extends \Magento\Framework\View\Element\Template{
     );
     
     public function __construct(
-            \Magento\Framework\View\Element\Template\Context $context, 
-            \Llapgoch\Developertoolbar\Block\Panel\Listing\Item $itemBlock,
-            \Llapgoch\Developertoolbar\Block\Panel\Listing\Container $itemContainer,
+            \Magento\Framework\View\Element\Template\Context $context,
             array $data = []){
-            
-        $this->_itemBlock = $itemBlock;
-        $this->_itemContainer = $itemContainer;
 
         parent::__construct($context, $data);
     }
     
-    protected function _prepareLayout()
+    public function getContent()
     {
-        parent::_prepareLayout();
-        $name = $this->getNameInLayout();
-        
-        // Add the blocks as children of this, so that the commenting exclusions take effect
-        $this->_layout->addBlock($this->_itemBlock, $name . 'list.item', $name);
-        $this->_layout->addBlock($this->_itemContainer, $name . 'list.container', $name);
+        return $this->getChildHtml('content');
     }
-    
-    abstract public function getContent();
     
     public function getTitle()
     {

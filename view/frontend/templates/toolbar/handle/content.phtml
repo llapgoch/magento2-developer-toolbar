@@ -1,0 +1,14 @@
+<?php
+$handles = $block->getHandles();
+?>
+<div class="devbar__list level_0">
+    <ul class="devbar__ul level_0">
+        <?php foreach($handles as $handle):?>
+            <li class="devbar__list-item">
+                <div class="devbar__info">
+                    <div class="devbar__item-name"><?php echo $block->escapeHtml($handle); ?></div>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

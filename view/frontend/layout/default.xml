@@ -7,10 +7,12 @@
     <body>
          <container name="llapgoch.developertoolbar" htmlTag="div" htmlClass="devbar">
              <block class="Magento\Framework\View\Element\Template" name="llapgoch.developertoolbar.bg" template="Llapgoch_Developertoolbar::toolbar/background.phtml" />
-             <block class="Llapgoch\Developertoolbar\Block\Panel\BlockPanel" name="llapgoch-developertoolbar-block" template="Llapgoch_Developertoolbar::toolbar/panel.phtml" />
-             <block class="Llapgoch\Developertoolbar\Block\Panel\HandlePanel" name="llapgoch-developertoolbar-handle" template="Llapgoch_Developertoolbar::toolbar/panel.phtml">
-
+             <block class="Llapgoch\Developertoolbar\Block\Panel\BlockPanel" name="llapgoch-developertoolbar-block" template="Llapgoch_Developertoolbar::toolbar/panel.phtml">
+                <block class="Magento\Framework\View\Element\Template" name="llapgoch-developertoolbar-block-actions" template="Llapgoch_Developertoolbar::toolbar/block/actions.phtml" />
              </block>
+             <block class="Llapgoch\Developertoolbar\Block\Panel\HandlePanel" name="llapgoch-developertoolbar-handle" template="Llapgoch_Developertoolbar::toolbar/panel.phtml">
+                <block class="Llapgoch\Developertoolbar\Block\Panel\Handle\Content" name="llapgoch-developertoolbar-handle-content" as="content" template="Llapgoch_Developertoolbar::toolbar/handle/content.phtml" />
+            </block>
          </container>
      </body>
 </page>

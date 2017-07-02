@@ -12,10 +12,7 @@
                     <?php echo $block->getTitle();?>
                 </h4>
                 <div class="devbar__title-actions">
-                    <label>
-                        <input type="checkbox" checked="checked" value="" id="show_class_type" />
-                        Show Class Type
-                    </label>
+                    <?php echo $block->getChildHtml('llapgoch-developertoolbar-block-actions'); ?>
                 </div>
             </div>
     

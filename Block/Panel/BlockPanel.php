@@ -20,7 +20,10 @@ class BlockPanel extends AbstractPanel{
             array $data = []
         ){
             
-        parent::__construct($context, $itemBlock, $itemContainer, $data);
+        parent::__construct($context, $data);
+
+        $this->_itemBlock = $itemBlock;
+        $this->_itemContainer = $itemContainer;
         
         $itemBlock->setTemplate('toolbar/block/list/item-block.phtml');
         $this->_layout = $layout;
@@ -30,6 +33,16 @@ class BlockPanel extends AbstractPanel{
         $this->_cssClassSuffix = 'block';
         
         $this->_requiredScripts['toolbar.blockviewer.widget'] = [];
+    }
+
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+        $name = $this->getNameInLayout();
+
+        // Add the blocks as children of this, so that the commenting exclusions take effect
+        $this->_layout->addBlock($this->_itemBlock, $name . 'list.item', $name);
+        $this->_layout->addBlock($this->_itemContainer, $name . 'list.container', $name);
     }
     
     public function getContent()
