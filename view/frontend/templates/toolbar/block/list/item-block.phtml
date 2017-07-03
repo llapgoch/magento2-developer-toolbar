@@ -10,12 +10,17 @@
         <?php else: ?>
             <span class="devbar__item-name"><?php echo $block->getName(); ?></span>
         <?php endif; ?>
-        
-        <?php if($extras = $block->getExtras()): ?>
-            <span class="devbar__extras">
-                <?php echo "<span class='devbar__seperator'></span>" . implode("<span class='devbar__seperator'></span>", $extras);?>
-            </span>
-        <?php endif;?>
+
+        <?php if(count($block->getExtras())):?>
+        <span class="devbar__extras">
+            <?php foreach($block->getExtras() as $key => $extra): ?>
+               <span class="devbar__extra__<?php echo $key; ?>">
+                   <span class='devbar__seperator'></span>
+                   <?php echo $block->escapeHtml($extra); ?>
+               </span>
+            <?php endforeach; ?>
+        </span>
+        <?php endif; ?>
         <a href="#" <?php echo $block->getOutputAttributes();?> class="devbar__highlight-toggle js-devbar__highlight-toggle"><?php echo __('Highlight') ?></a>
     </div>
     <?php echo $_childrenHtml; ?>

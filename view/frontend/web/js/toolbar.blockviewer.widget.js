@@ -14,6 +14,8 @@ define([
            isActiveClass: 'is-active',
            isErrorClass: 'is-error',
            existsClass: 'exists',
+           showClassSelector: '.js-show-class-type',
+           classTypeSelector: '.devbar__extra__block-type',
            
            // Selectors
            toggleSelector: '.js-devbar__highlight-toggle',
@@ -96,9 +98,29 @@ define([
 
                    $this.closest(this._getToolbar().getToolbarInfoSelector()).addClass(this._getToolbar().getToolbarInfoActiveClass());
                }
-           }
+           };
+
+           events['click ' + this.options.showClassSelector] = function(event){
+                this.checkEnableClassType();
+           };
            
            this._on(this.element, events);
+       },
+
+       checkEnableClassType:function(){
+            if($(this.options.showClassSelector, this.element).is(':checked')){
+                this.enableClassType();
+            }else{
+                this.disableClassType();
+            }
+       },
+
+       enableClassType: function(){
+           $(this.options.classTypeSelector, this.element).show();
+       },
+
+       disableClassType: function(){
+           $(this.options.classTypeSelector, this.element).hide();
        },
        
        _getStartMarker: function(itemName){

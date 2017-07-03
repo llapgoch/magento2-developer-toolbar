@@ -92,25 +92,25 @@ class BlockPanel extends AbstractPanel{
     public function getBlockExtras($name, $data){
         
         if(isset($data['type'])){
-            $extras[] = $data['type'];
+            $extras['type'] = $data['type'];
         }
         
         $block = $this->_layout->getBlock($name);
         
         if($block){
             if($block instanceof \Magento\Cms\Block\Block){
-                $extras[] = $block->getBlockId();
+                $extras['id'] = $block->getBlockId();
             }
             
             if($block instanceof \Magento\Cms\Block\Page){
-                $extras[] = $block->getPage()->getIdentifier();
+                $extras['page-id'] = $block->getPage()->getIdentifier();
             }
             
             if($block instanceof \Magento\Framework\View\Element\Template){
-                $extras[] = $block->getTemplate();
+                $extras['template'] = $block->getTemplate();
             }
             
-            $extras[] = $block->getType();
+            $extras['block-type'] = $block->getType();
             
         }
         
@@ -155,21 +155,21 @@ class BlockPanel extends AbstractPanel{
     protected function _buildEntries(&$entries, $block, $alias, $level)
     {
         $blocks = $this->_layout->getAllBlocks();
-        $extras = array();
-        $extras[] = count($block->getChild()) ? count($block->getChild()) : "-";
-        $extras[] = $block->getType();
+        $extras = [];
+        $extras['children'] = count($block->getChild()) ? count($block->getChild()) : "-";
+        $extras['type'] = $block->getType();
 
         if ($block->getType() === 'cms/block') {
-            $extras[] = $block->getBlockId();
+            $extras['id'] = $block->getBlockId();
         } elseif ($block->getType() == 'cms/page') {
-            $extras[] = $block->getPage()->getIdentifier();
+            $extras['page-id'] = $block->getPage()->getIdentifier();
         } elseif ($template = $block->getTemplate()) {
-            $extras[] = $template;
+            $extras['template'] = $template;
         } else {
             $extras[] = '-';
         }
 
-        $extras[] = get_class($block);
+        $extras['class'] = get_class($block);
 
         // sprintf("$offset%s %s\n", $alias, $this->_colorize($extraString, self::COLOR_DARK_GRAY))
         $name = $block->getNameInLayout();

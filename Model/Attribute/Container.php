@@ -10,7 +10,7 @@ class Container extends AbstractModel{
         $attrs = '';
         
         foreach($this->_attributes as $k => $v){
-            $attrs = $k . "='$v'";
+            $attrs .= $k . "='$v' ";
         }
         
         return $attrs;
