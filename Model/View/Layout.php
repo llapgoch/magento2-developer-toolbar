@@ -24,8 +24,8 @@ class Layout extends \Magento\Framework\View\Layout{
         \Magento\Framework\View\Layout\Generator\ContextFactory $generatorContextFactory,
         AppState $appState,
         Logger $logger,
-        \Magento\Framework\ObjectManagerInterface $objectManager,
-        \Llapgoch\Developertoolbar\Helper\Data\Proxy $helper
+        \Llapgoch\Developertoolbar\Helper\Data\Proxy $helper,
+        $cacheable = true
         ){
 
         parent::__construct(
@@ -40,9 +40,10 @@ class Layout extends \Magento\Framework\View\Layout{
             $readerContextFactory,
             $generatorContextFactory,
             $appState,
-            $logger
+            $logger,
+            $cacheable
         );
-       
+
          $this->_helper = $helper;
     }
     
