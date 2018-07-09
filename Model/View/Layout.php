@@ -53,12 +53,12 @@ class Layout extends \Magento\Framework\View\Layout{
         return $this->structure;
     }
     
-    protected function _renderContainer($name)
+    protected function _renderContainer($name, $useCache = true)
     {
         $html = '';
         $children = $this->getChildNames($name);
         foreach ($children as $child) {
-            $html .= $this->renderElement($child);
+            $html .= $this->renderElement($child, $useCache);
         }
         if ($html == '' || !$this->structure->getAttribute($name, Element::CONTAINER_OPT_HTML_TAG)) {
             return $html;
