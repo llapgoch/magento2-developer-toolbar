@@ -228,7 +228,7 @@ define([
                 return this._commentBlocks;
             }
 
-            this._commentBlocks = $("*").contents().filter(
+            this._commentBlocks = $("*:not(iframe)").contents().filter(
                 function () {
                     if (this.nodeType == 8) {
                         return this.nodeValue.indexOf(self.options.markerMainName) !== -1;
